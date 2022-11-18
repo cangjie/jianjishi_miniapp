@@ -1,0 +1,38 @@
+<mp-cells>
+  <mp-cell>
+    <view style="display: flex; flex-direction: row;" >
+      <view class="left-column" >选择店铺：</view>
+      <view class="right-column" ><picker  mode="selector" range="{{shopList}}" >请选择……</picker></view>
+    </view>
+  </mp-cell>
+  <mp-cell>
+    <view style="display: flex; flex-direction: row;" >
+      <view class="left-column" >选择日期：</view>
+      <view class="right-column" >
+        <picker mode="date" start="2022-11-1" end="2023-5-1"  >
+            <view class="picker" >请选择……</view>
+          </picker>
+      </view>
+    </view>
+  </mp-cell>
+  <mp-cell>
+    <view style="display: flex; flex-direction: row;" >
+      <view class="left-column" >选择时段：</view>
+      <view class="right-column" ><picker  mode="selector" range="{{timeSegList}}" >请选择……</picker></view>
+    </view>
+  </mp-cell>
+  <mp-cell>
+    <view style="display: flex; flex-direction: row;" >
+      <view class="left-column" >姓名：</view>
+      <view class="right-column" ><input placeholder="请填写姓名" /> </view>
+    </view>
+  </mp-cell>
+  <mp-cell>
+    <view style="display: flex; flex-direction: row;" >
+      <view class="left-column" >手机号：</view>
+      <view class="right-column" ><input value="13501177897" /> </view>
+    </view>
+  </mp-cell>
+  <mp-cell><button bindtap="submit" > 确 定 预 约 </button></mp-cell>
+</mp-cells>
+<mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" current="{{0}}" list="{{tabBarItem}}" bindchange="tabSwitch" ></mp-tabbar>

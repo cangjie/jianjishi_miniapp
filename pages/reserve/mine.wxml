@@ -1,0 +1,17 @@
+<mp-cells>
+  <mp-cell>
+    <view style="display: flex;flex-direction: row;">
+      <view class="left-column" >店铺：</view>
+      <view class="right-column" >万龙店</view>
+    </view>
+    <view style="display: flex;flex-direction: row;">
+      <view class="left-column" >时间：</view>
+      <view class="right-column" >2022-11-30 15:00-16:00</view>
+    </view>
+  </mp-cell>
+</mp-cells>
+<view style="margin-top: 50rpx;" >
+  <button bindtap="gotoAdmin"> 我 是 管 理 员 </button>
+</view>
+
+<mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" current="{{1}}" list="{{tabBarItem}}" bindchange="tabSwitch" ></mp-tabbar>
