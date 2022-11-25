@@ -1,0 +1,8 @@
+
+      <view>
+        <picker mode="selector" range="{{name_list}}" bindchange="selectChanged" >
+          <picker-view>{{name_list[currentSelectedIndex]}}</picker-view>
+        </picker>
+      </view>
+  
+ 

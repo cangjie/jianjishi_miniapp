@@ -33,6 +33,26 @@ Page({
     var that = this
     that.setData({needAuth: false, cell: e.detail.userInfo.cell_number})
   },
+  changeShop: function(e){
+    console.log('shop changed', e)
+    var that = this
+    that.setData({shop: e.detail.shop})
+  },
+  input: function(e){
+    console.log('input', e)
+    var that = this
+    var value = e.detail.value.trim()
+    switch(e.currentTarget.id)  {
+      case 'name':
+        that.setData({name: value})
+        break
+      case 'cell':
+        that.setData({cell: value})
+        break
+      default:
+        break
+    }
+  },
   /**
    * Lifecycle function--Called when page load
    */
@@ -41,10 +61,15 @@ Page({
     that.setData({tabBarItem: app.globalData.userTabBarItem})
     app.loginPromise.then(function (resolve){
       var cell = ''
+      var name = ''
       if (app.globalData.userInfo != null && app.globalData.userInfo.cell_number != null &&  !isNaN(app.globalData.userInfo.cell_number) )
       {
         cell = app.globalData.userInfo.cell_number
       }
+      if (app.globalData.userInfo != null && app.globalData.userInfo.real_name != undefined && app.globalData.userInfo.real_name != null){
+        name = app.globalData.userInfo.real_name.trim()
+      }
+      that.setData({real_name: name})
       if (cell == ''){
         console.log('need auth')
         that.setData({needAuth: true})

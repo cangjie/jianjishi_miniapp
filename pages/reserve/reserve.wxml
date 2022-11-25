@@ -3,7 +3,10 @@
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
       <view class="left-column" >选择店铺：</view>
-      <view class="right-column" ><picker  mode="selector" range="{{shopList}}" >请选择……</picker></view>
+      <view class="right-column" >
+        <!--picker  mode="selector" range="{{shopList}}" >请选择……</picker-->
+        <shop_selector bindShopSelected="changeShop" ></shop_selector>
+      </view>
     </view>
   </mp-cell>
   <mp-cell>
@@ -25,13 +28,13 @@
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
       <view class="left-column" >姓名：</view>
-      <view class="right-column" ><input placeholder="请填写姓名" /> </view>
+      <view class="right-column" ><input placeholder="{{ real_name == '' ? '请填写姓名' : ''}}" bindinput="input" id="name" value="{{real_name}}" /> </view>
     </view>
   </mp-cell>
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
       <view class="left-column" >手机号：</view>
-      <view class="right-column" ><input value="{{cell}}" placeholder="{{cell==''? '请填写手机号' : ''}}" /> </view>
+      <view class="right-column" ><input bindinput="input" id="cell" value="{{cell}}" placeholder="{{cell==''? '请填写手机号' : ''}}" /> </view>
     </view>
   </mp-cell>
   <mp-cell><button bindtap="submit" > 确 定 预 约 </button></mp-cell>
