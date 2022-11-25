@@ -1,3 +1,4 @@
+<auth wx:if="{{needAuth}}" validType="cell" onUpdateSuccess="cellGetted" ></auth>
 <mp-cells>
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
@@ -30,7 +31,7 @@
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
       <view class="left-column" >手机号：</view>
-      <view class="right-column" ><input value="13501177897" /> </view>
+      <view class="right-column" ><input value="{{cell}}" placeholder="{{cell==''? '请填写手机号' : ''}}" /> </view>
     </view>
   </mp-cell>
   <mp-cell><button bindtap="submit" > 确 定 预 约 </button></mp-cell>

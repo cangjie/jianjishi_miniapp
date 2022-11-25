@@ -19,15 +19,25 @@ App({
   loginPromise: new Promise(function(resolve){
     
     wx.login({
-      success: res => {
+      success: (res) => {
         console.log('user login', res.code)
         const app = getApp()
         var getSessionKeyUrl = app.globalData.requestPrefix + 'MiniAppLogin/GetSessionKey?code=' + res.code
         wx.request({
           url: getSessionKeyUrl,
-          success: res => {
+          success: (res) => {
             console.log('session key', res)
-
+            var sessionKey = res.data
+            app.globalData.sessionKey = sessionKey
+            var getUserInfoUrl = app.globalData.requestPrefix + 'MiniUser/GetBySessionKey/' + encodeURIComponent(sessionKey)
+            wx.request({
+              url: getUserInfoUrl,
+              success: (res) =>{
+                console.log('user info', res)
+                app.globalData.userInfo = res.data
+                resolve({userInfo: app.globalData.userInfo})
+              }
+            })
           }
         })
       }
