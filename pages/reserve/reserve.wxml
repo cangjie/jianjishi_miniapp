@@ -13,8 +13,8 @@
     <view style="display: flex; flex-direction: row;" >
       <view class="left-column" >选择日期：</view>
       <view class="right-column" >
-        <picker mode="date" start="2022-11-1" end="2023-5-1"  >
-            <view class="picker" >请选择……</view>
+        <picker mode="date" start="2022-11-1" end="2023-5-1" bindchange="selectDate"  >
+            <view class="picker" >{{reserveDate}}</view>
           </picker>
       </view>
     </view>
@@ -22,7 +22,7 @@
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
       <view class="left-column" >选择时段：</view>
-      <view class="right-column" ><picker  mode="selector" range="{{timeSegList}}" >请选择……</picker></view>
+      <view class="right-column" ><picker  mode="selector" range="{{timeTableDescList}}" bindchange="selectTime" >{{timeTableDescList[timeTableSelectIndex]}}</picker></view>
     </view>
   </mp-cell>
   <mp-cell>

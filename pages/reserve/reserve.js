@@ -1,5 +1,6 @@
 // pages/reserve/reserve.js
 const app = getApp()
+const util = require('../../utils/util.js')
 Page({
 
   /**
@@ -9,7 +10,18 @@ Page({
     shopList: ['太舞店', '万龙店', '望京店', '回龙观店'],
     timeSegList: ['10:00-11:00', '11:30-12:30', '13:30-14:30', '15:00-16:00'],
     needAuth: false,
-    cell: ''
+    cell: '',
+    shop: '',
+    reserveDate: util.formatDate(new Date()),
+    timeTableDescList: ['请选择……'],
+    timeTableIdList: [0],
+    timeTableSelectIndex: 0
+  },
+  selectDate(e){
+    console.log('date selected', e)
+    var that = this
+    that.setData({reserveDate: e.detail.value})
+    that.fillTimeTable()
   },
   submit(){
     wx.showToast({
@@ -36,7 +48,39 @@ Page({
   changeShop: function(e){
     console.log('shop changed', e)
     var that = this
-    that.setData({shop: e.detail.shop})
+    var that = this
+    that.setData({shop: e.detail.shop, shopId: e.detail.shopId})
+    that.fillTimeTable()
+  },
+  fillTimeTable: function(){
+    var that = this
+    var shopId = that.data.shopId
+    var date = that.data.reserveDate
+    var timeTableDescList = ['请选择……']
+    var timeTableIdList = [0]
+    var timeTableSelectIndex = 0
+    if (shopId != 0){
+      var getTimeTableUrl = app.globalData.requestPrefix + 'Shop/GetTimeTable/' + shopId + '?date=' + date
+      wx.request({
+        url: getTimeTableUrl,
+        success: (res)=>{
+          console.log('get time table', res)
+          for(var i = 0; i < res.data.length; i++){
+            var timeSeg = res.data[i]
+            if (timeSeg.avaliableCount >0){
+              timeTableDescList.push(timeSeg.description)
+              timeTableIdList.push(timeSeg.id)
+            }
+          }
+          that.setData({timeTableDescList: timeTableDescList, timeTableIdList: timeTableIdList, timeTableSelectIndex: 0})
+        }
+      })
+    }
+  },
+  selectTime: function(e){
+    console.log('time select', e)
+    var that = this
+    that.setData({timeTableSelectIndex: e.detail.value})
   },
   input: function(e){
     console.log('input', e)
