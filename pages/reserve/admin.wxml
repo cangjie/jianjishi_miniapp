@@ -1,28 +1,38 @@
 <view style="display: flex; flex-direction: row;">
   <view class="left-column">选择店铺：</view>
-  <view>全部</view>
+  <view class="right-column">
+    <shop_selector bindShopSelected="changeShop" ></shop_selector>
+  </view>
 </view>
 <view style="display: flex; flex-direction: row;">
-  <view class="left-column">开始日期：</view>
-  <view>全部</view>
+  <view class="left-column" >开始日期：</view>
+  <view class="right-column" >
+    <picker id="start" mode="date" start="2022-11-1" end="2023-5-1" bindchange="selectDate"  >
+      <view class="picker" >{{startDate}}</view>
+    </picker>
+  </view>
 </view>
 <view style="display: flex; flex-direction: row;">
-  <view class="left-column">结束日期：</view>
-  <view>全部</view>
+  <view class="left-column" >结束日期：</view>
+  <view class="right-column" >
+    <picker id="end" mode="date" start="2022-11-1" end="2023-5-1" bindchange="selectDate"  >
+      <view class="picker" >{{endDate}}</view>
+    </picker>
+  </view>
 </view>
-<mp-cells title="共100条预约" >
-  <mp-cell>
+<mp-cells title="共{{reserveList.length}}条预约" >
+  <mp-cell wx:for="{{reserveList}}" >
     <view style="display: flex; flex-direction: row;" >
       <view class="column1" >店铺：</view>
-      <view class="column2" >万龙店</view>
+      <view class="column2" >{{item.shop_name}}</view>
       <view class="column3" >时间：</view>
-      <view class="column4" >2022-11-30 15:00-16:00</view>
+      <view class="column4" >{{item.reserve_date}} {{item.time_table_description}}</view>
     </view>
     <view style="display: flex; flex-direction: row;" >
       <view class="column1" >姓名：</view>
-      <view class="column2" >苍杰</view>
+      <view class="column2" >{{item.real_name}}</view>
       <view class="column3" >电话：</view>
-      <view class="column4" >13501177897</view>
+      <view class="column4" >{{item.cell_number}}</view>
     </view>
   </mp-cell>
 </mp-cells>

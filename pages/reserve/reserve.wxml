@@ -14,8 +14,8 @@
       <view class="left-column" >选择日期：</view>
       <view class="right-column" >
         <picker mode="date" start="2022-11-1" end="2023-5-1" bindchange="selectDate"  >
-            <view class="picker" >{{reserveDate}}</view>
-          </picker>
+          <view class="picker" >{{reserveDate}}</view>
+        </picker>
       </view>
     </view>
   </mp-cell>

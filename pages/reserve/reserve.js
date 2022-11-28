@@ -83,7 +83,9 @@ Page({
         return
       }
       else{
-        var reserveUrl = app.globalData.requestPrefix + 'Shop/Reserve/' + shopId + '?timeTableId=' + timeTableId + '&date=' + encodeURIComponent(date) + '&sessionKey=' + encodeURIComponent(app.globalData.sessionKey)
+        var reserveUrl = app.globalData.requestPrefix + 'Shop/Reserve/' + shopId + '?timeTableId=' + timeTableId 
+        + '&date=' + encodeURIComponent(date) + '&sessionKey=' + encodeURIComponent(app.globalData.sessionKey) 
+        + '&cell=' + cell + '&name=' + encodeURIComponent(name)
         wx.request({
           url: reserveUrl,
           method: 'GET',

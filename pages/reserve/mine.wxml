@@ -1,16 +1,16 @@
 <mp-cells>
-  <mp-cell>
+  <mp-cell wx:for="{{reserveList}}" >
     <view style="display: flex;flex-direction: row;">
       <view class="left-column" >店铺：</view>
-      <view class="right-column" >万龙店</view>
+      <view class="right-column" >{{item.shop_name}}</view>
     </view>
     <view style="display: flex;flex-direction: row;">
       <view class="left-column" >时间：</view>
-      <view class="right-column" >2022-11-30 15:00-16:00</view>
+      <view class="right-column" >{{item.reserve_date_str}} {{item.time_table_description}}</view>
     </view>
   </mp-cell>
 </mp-cells>
-<view style="margin-top: 50rpx;" >
+<view style="margin-top: 50rpx;" wx:if="{{isStaff}}" >
   <button bindtap="gotoAdmin"> 我 是 管 理 员 </button>
 </view>
 
