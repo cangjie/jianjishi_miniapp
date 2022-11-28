@@ -15,7 +15,8 @@ Page({
     reserveDate: util.formatDate(new Date()),
     timeTableDescList: ['请选择……'],
     timeTableIdList: [0],
-    timeTableSelectIndex: 0
+    timeTableSelectIndex: 0,
+    name: ''
   },
   selectDate(e){
     console.log('date selected', e)
@@ -24,16 +25,102 @@ Page({
     that.fillTimeTable()
   },
   submit(){
-    wx.showToast({
-      title: '预约成功',
-      icon:'none',
-      duration: 5000,
-      success:(res)=>{
-        wx.redirectTo({
-          url: 'mine',
+    var that = this
+    var shopId = that.data.shopId
+    var timeTableId = that.data.timeTableIdList[that.data.timeTableSelectIndex]
+    var name = that.data.name
+    var cell = that.data.cell
+    var date = that.data.reserveDate
+    var message = ''
+    if (shopId == 0){
+      message = '请选择店铺'
+    }
+    else if (timeTableId == 0){
+      message = '请选择时间段'
+    }
+    else if (name == ''){
+      message = '请填写姓名'
+    }
+    else if (cell == ''){
+      message = '请填写手机号'
+    }
+
+    if (message != ''){
+      wx.showToast({
+        title: message,
+        icon: 'none',
+        duration: 3000
+      })
+      return
+    }
+
+    //var getMyReserveUrl = app.globalData.requestPrefix + 'Shop/'
+    var getMyReservePromise = new Promise(function(resolve){
+      var getMyReserveUrl = app.globalData.requestPrefix + 'Shop/GetMyReserve/' + encodeURIComponent(app.globalData.sessionKey)
+      wx.request({
+        url: getMyReserveUrl,
+        method: 'GET',
+        success:(res)=>{
+          var reserved = false
+          for(var i = 0; i < res.data.length; i++){
+            if (util.formatDate(new Date(res.data[i].reserve_date)) == date){
+              reserved = true
+              break
+            }
+          }
+          resolve({reserved: reserved})
+        }
+      })
+    })
+
+    getMyReservePromise.then(function(resolve){
+      if (resolve.reserved){
+        wx.showToast({
+          title: '您在' + date + '已经预约过，当日一人只可预约一次，请改日再约。',
+          icon: 'none',
+          duration: 3000
         })
+        return
+      }
+      else{
+        var reserveUrl = app.globalData.requestPrefix + 'Shop/Reserve/' + shopId + '?timeTableId=' + timeTableId + '&date=' + encodeURIComponent(date) + '&sessionKey=' + encodeURIComponent(app.globalData.sessionKey)
+        wx.request({
+          url: reserveUrl,
+          method: 'GET',
+          success:(res)=>{
+            
+            if (res.data.id > 0){
+              wx.showToast({
+                title: '预约成功',
+                icon:'none',
+                duration: 5000,
+                success:(res)=>{
+                  wx.redirectTo({
+                    url: 'mine',
+                  })
+                }
+              })
+            }
+            else{
+              wx.showToast({
+                title: '预约失败',
+                icon:'none',
+                duration: 5000,
+                success:(res)=>{
+                  
+                }
+              })
+            }
+          }
+        })
+        
+
+
+
       }
     })
+
+    
   },
   tabSwitch: function(e) {
     wx.redirectTo({
@@ -97,6 +184,7 @@ Page({
         break
     }
   },
+
   /**
    * Lifecycle function--Called when page load
    */
