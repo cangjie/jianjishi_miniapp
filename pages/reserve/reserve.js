@@ -192,8 +192,10 @@ Page({
    */
   onLoad(options) {
     var that = this
+    
     that.setData({tabBarItem: app.globalData.userTabBarItem})
     app.loginPromise.then(function (resolve){
+      
       var cell = ''
       var name = ''
       if (app.globalData.userInfo != null && app.globalData.userInfo.cell_number != null &&  !isNaN(app.globalData.userInfo.cell_number) )
@@ -203,7 +205,7 @@ Page({
       if (app.globalData.userInfo != null && app.globalData.userInfo.real_name != undefined && app.globalData.userInfo.real_name != null){
         name = app.globalData.userInfo.real_name.trim()
       }
-      that.setData({real_name: name})
+      that.setData({name: name})
       if (cell == ''){
         console.log('need auth')
         that.setData({needAuth: true})

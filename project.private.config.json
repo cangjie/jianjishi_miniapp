@@ -2,5 +2,6 @@
   "projectname": "jianjishi_miniapp",
   "setting": {
     "compileHotReLoad": true
-  }
+  },
+  "libVersion": "2.27.3"
 }

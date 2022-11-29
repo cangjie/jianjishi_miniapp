@@ -1,4 +1,10 @@
 /**app.wxss**/
+.weui-tabbar__item.weui-bar__item_on .weui-tabbar__label{
+  color: blue;
+}
+.weui-tabbar__label{
+  font-size: 12pt;
+}
 .container {
   height: 100%;
   display: flex;
@@ -7,16 +13,19 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
+  font-size: 15pt;
 } 
 .left-column{
   width:25%;
   text-align: right;
   font-size: 10pt;
   margin-top:20rpx;
+  font-size: 12pt;
 }
 .right-column{
   width:75%;
   text-align: left;
   font-size: 10pt;
   margin-top:20rpx;
+  font-size: 12pt;
 }

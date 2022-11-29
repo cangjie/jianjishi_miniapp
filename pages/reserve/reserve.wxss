@@ -1,1 +1,5 @@
-/* pages/reserve/reserve.wxss */
+/* pages/reserve/reserve.wxss 
+@import '../../app.wxss'*/
+.weui-tabbar__item.weui-bar__item_on .weui-tabbar__label{
+  color: blue;
+}

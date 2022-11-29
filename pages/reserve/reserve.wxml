@@ -28,7 +28,7 @@
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
       <view class="left-column" >姓名：</view>
-      <view class="right-column" ><input placeholder="{{ real_name == '' ? '请填写姓名' : ''}}" bindinput="input" id="name" value="{{real_name}}" /> </view>
+      <view class="right-column" ><input placeholder="{{ name == '' ? '请填写姓名' : ''}}" bindinput="input" id="name" value="{{name}}" /> </view>
     </view>
   </mp-cell>
   <mp-cell>
@@ -39,4 +39,4 @@
   </mp-cell>
   <mp-cell><button bindtap="submit" > 确 定 预 约 </button></mp-cell>
 </mp-cells>
-<mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" current="{{0}}" list="{{tabBarItem}}" bindchange="tabSwitch" ></mp-tabbar>
+<mp-tabbar ext-class="^tabbar"  style="position:fixed;bottom:0;width:100%;left:0;right:0;" current="{{0}}" list="{{tabBarItem}}" bindchange="tabSwitch" ></mp-tabbar>

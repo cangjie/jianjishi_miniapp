@@ -6,6 +6,8 @@ App({
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    
+    
     /*
     // 登录
     wx.login({
@@ -51,14 +53,14 @@ App({
       {
         "pagePath": "/pages/reserve/reserve",
         "text": "预约",
-        //"iconPath": "/images/equip.jpg",
-        //"selectedIconPath": "/images/equip.jpg"
+        "iconPath": "/images/article.png",
+        "selectedIconPath": "/images/article_s.png"
       },
       {
         "pagePath": "/pages/reserve/mine",
         "text": "查看",
-        //"iconPath": "/images/equip.jpg",
-        //"selectedIconPath": "/images/equip.jpg"
+        "iconPath": "/images/my.png",
+        "selectedIconPath": "/images/my_s.png"
       }
     ]
   }
