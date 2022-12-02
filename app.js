@@ -48,7 +48,7 @@ App({
   }),
   globalData: {
     userInfo: null,
-    requestPrefix: 'https://jjsmini.luqinwenda.com/api/',
+    requestPrefix: 'https://mini.spineguard.cn/api/',
     userTabBarItem: [
       {
         "pagePath": "/pages/reserve/reserve",

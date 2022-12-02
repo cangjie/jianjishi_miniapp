@@ -1,1 +1,2 @@
 /* pages/reserve/mine.wxss */
+@import '../../app.wxss'

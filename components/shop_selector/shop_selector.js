@@ -31,7 +31,7 @@ Component({
               id_list.push(res.data[i].id)
             }
             that.setData({shop_list: res.data, name_list: name_list, id_list: id_list})
-            that.triggerEvent('ShopSelected', {shop: '', shopId: 0})
+            that.triggerEvent('ShopSelected', {shop: '', shopId: 0, shopList: that.data.shop_list})
           }
         })
       })
@@ -46,12 +46,12 @@ Component({
       var that = this
       that.setData({currentSelectedIndex: e.detail.value})
       if (e.detail.value == 0){
-        that.triggerEvent('ShopSelected', {shop: '', shopId: 0})
+        that.triggerEvent('ShopSelected', {shop: '', shopId: 0, shopList: that.data.data.shop_list})
       }
       else{
         var selectedShopName = that.data.name_list[e.detail.value]
         var selectedShopId = that.data.id_list[e.detail.value]
-        that.triggerEvent('ShopSelected', {shop: selectedShopName, shopId: selectedShopId})
+        that.triggerEvent('ShopSelected', {shop: selectedShopName, shopId: selectedShopId, shopList: that.data.shop_list})
       }
       
     }

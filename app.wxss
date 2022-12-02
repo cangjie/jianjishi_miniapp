@@ -29,3 +29,6 @@
   margin-top:20rpx;
   font-size: 12pt;
 }
+.weui-tabbar__item.weui-bar__item_on .weui-tabbar__label{
+  color: blue;
+}

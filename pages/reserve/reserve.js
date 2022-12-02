@@ -16,7 +16,8 @@ Page({
     timeTableDescList: ['请选择……'],
     timeTableIdList: [0],
     timeTableSelectIndex: 0,
-    name: ''
+    name: '',
+    shopAddress: ''
   },
   selectDate(e){
     console.log('date selected', e)
@@ -137,8 +138,17 @@ Page({
   changeShop: function(e){
     console.log('shop changed', e)
     var that = this
-    var that = this
-    that.setData({shop: e.detail.shop, shopId: e.detail.shopId})
+    
+    var shopId = e.detail.shopId
+    var shopList = e.detail.shopList
+    var shopAddress = ''
+    for(var i = 0; i < shopList.length; i++){
+      if (shopList[i].id == shopId){
+        shopAddress = shopList[i].address
+        break
+      }
+    }
+    that.setData({shop: e.detail.shop, shopId: e.detail.shopId, shopAddress: shopAddress})
     that.fillTimeTable()
   },
   fillTimeTable: function(){

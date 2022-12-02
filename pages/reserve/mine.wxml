@@ -5,6 +5,10 @@
       <view class="right-column" >{{item.shop_name}}</view>
     </view>
     <view style="display: flex;flex-direction: row;">
+      <view class="left-column" >地址：</view>
+      <view class="right-column" >{{item.address}}</view>
+    </view>
+    <view style="display: flex;flex-direction: row;">
       <view class="left-column" >时间：</view>
       <view class="right-column" >{{item.reserve_date_str}} {{item.time_table_description}}</view>
     </view>

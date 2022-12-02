@@ -11,6 +11,12 @@
   </mp-cell>
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
+      <view class="left-column" >店铺地址：</view>
+      <view class="right-column" >{{shopAddress}}</view>
+    </view>
+  </mp-cell>
+  <mp-cell>
+    <view style="display: flex; flex-direction: row;" >
       <view class="left-column" >选择日期：</view>
       <view class="right-column" >
         <picker mode="date" start="2022-11-1" end="2023-5-1" bindchange="selectDate"  >
@@ -22,7 +28,12 @@
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
       <view class="left-column" >选择时段：</view>
-      <view class="right-column" ><picker  mode="selector" range="{{timeTableDescList}}" bindchange="selectTime" >{{timeTableDescList[timeTableSelectIndex]}}</picker></view>
+      <view class="right-column" style="display: flex;flex-direction: row;" >
+        <picker  mode="selector" range="{{timeTableDescList}}" bindchange="selectTime" >
+          {{timeTableDescList[timeTableSelectIndex]}}
+        </picker>
+        <view style="font-size: 11pt; color:red" wx:if="{{timeTableDescList.length == 1 && shopId != 0}}" > 此店铺当日已约满。</view>
+      </view>
     </view>
   </mp-cell>
   <mp-cell>
@@ -39,4 +50,4 @@
   </mp-cell>
   <mp-cell><button bindtap="submit" > 确 定 预 约 </button></mp-cell>
 </mp-cells>
-<mp-tabbar ext-class="^tabbar"  style="position:fixed;bottom:0;width:100%;left:0;right:0;" current="{{0}}" list="{{tabBarItem}}" bindchange="tabSwitch" ></mp-tabbar>
+<mp-tabbar   style="position:fixed;bottom:0;width:100%;left:0;right:0;" current="{{0}}" list="{{tabBarItem}}" bindchange="tabSwitch" ></mp-tabbar>
