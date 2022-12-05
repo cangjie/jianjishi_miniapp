@@ -1,3 +1,6 @@
+<view style="margin-top: 50rpx;" wx:if="{{isStaff}}" >
+  <button bindtap="gotoAdmin"> 我 是 管 理 员 </button>
+</view>
 <mp-cells>
   <mp-cell wx:for="{{reserveList}}" >
     <view style="display: flex;flex-direction: row;">
@@ -14,8 +17,6 @@
     </view>
   </mp-cell>
 </mp-cells>
-<view style="margin-top: 50rpx;" wx:if="{{isStaff}}" >
-  <button bindtap="gotoAdmin"> 我 是 管 理 员 </button>
-</view>
+
 
 <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" current="{{1}}" list="{{tabBarItem}}" bindchange="tabSwitch" ></mp-tabbar>

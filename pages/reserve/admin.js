@@ -59,6 +59,11 @@ Page({
   onLoad(options) {
     var that = this
     app.loginPromise.then(function(resolve){
+      if (options.date != undefined){
+        var date = new Date(options.date)
+        var dateStr = util.formatDate(date);
+        that.setData({startDate: dateStr, endDate: dateStr})
+      }
       that.GetData()
     })
   },

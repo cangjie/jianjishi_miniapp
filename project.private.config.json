@@ -3,5 +3,18 @@
   "setting": {
     "compileHotReLoad": true
   },
-  "libVersion": "2.27.3"
+  "libVersion": "2.27.3",
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "admin",
+          "pathName": "pages/reserve/admin",
+          "query": "date=2022-12-7",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  }
 }
