@@ -4,14 +4,15 @@
     "pages/logs/logs",
     "pages/reserve/reserve",
     "pages/reserve/mine",
-    "pages/reserve/admin"
+    "pages/reserve/admin",
+    "pages/contact/contact",
+    "pages/reserve/contact"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle": "black"
-    
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

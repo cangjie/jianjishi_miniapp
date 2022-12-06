@@ -1,3 +1,17 @@
 /* pages/reserve/reserve.wxss*/ 
-@import '../../app.wxss'
+@import '../../app.wxss';
+.left-column{
+  width:35%;
+  text-align: right;
+  font-size: 10pt;
+  margin-top:20rpx;
+  font-size: 12pt;
+}
+.right-column{
+  width:65%;
+  text-align: left;
+  font-size: 10pt;
+  margin-top:20rpx;
+  font-size: 12pt;
+}
 

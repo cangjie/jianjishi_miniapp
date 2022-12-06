@@ -19,4 +19,4 @@
 </mp-cells>
 
 
-<mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" current="{{1}}" list="{{tabBarItem}}" bindchange="tabSwitch" ></mp-tabbar>
+<mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" current="{{2}}" list="{{tabBarItem}}" bindchange="tabSwitch" ></mp-tabbar>

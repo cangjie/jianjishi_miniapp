@@ -57,6 +57,12 @@ App({
         "selectedIconPath": "/images/article_s.png"
       },
       {
+        "pagePath": "/pages/reserve/contact",
+        "text": "联系我们",
+        "iconPath": "/images/tel.png",
+        "selectedIconPath": "/images/tel_s.png"
+      },
+      {
         "pagePath": "/pages/reserve/mine",
         "text": "查看",
         "iconPath": "/images/my.png",

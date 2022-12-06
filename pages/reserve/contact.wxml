@@ -1,0 +1,11 @@
+<!--pages/reserve/contact.wxml-->
+<view style="text-align: center;margin-top: 100rpx; font-size: 12pt;">
+  我们的客服电话
+</view>
+<view style="text-align: center;margin-top: 100rpx; font-size: 15pt;">
+  13901162727
+</view>
+<view style="text-align: center;margin-top: 100rpx; font-size: 15pt;">
+  <button bindtap="call" > 点 击 拨 打 </button>
+</view>
+<mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" current="{{1}}" list="{{tabBarItem}}" bindchange="tabSwitch" ></mp-tabbar>

@@ -2,7 +2,10 @@
 <mp-cells>
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
-      <view class="left-column" >选择店铺：</view>
+      <view class="left-column" style="display: flex;flex-direction: row;">
+        <image src="../../images/hand.png" style="width: 25rpx;height: 25rpx;"></image>
+        <view>选择店铺：</view> 
+      </view>
       <view class="right-column" >
         <!--picker  mode="selector" range="{{shopList}}" >请选择……</picker-->
         <shop_selector bindShopSelected="changeShop" ></shop_selector>
