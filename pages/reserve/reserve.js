@@ -17,7 +17,27 @@ Page({
     timeTableIdList: [0],
     timeTableSelectIndex: 0,
     name: '',
-    shopAddress: ''
+    shopAddress: '',
+    hand: 'shop'
+  },
+  setHand(){
+    var that = this
+    var data = that.data
+    if (data.shop == ''){
+      that.setData({hand: 'shop'})
+    }
+    else if (data.timeTableSelectIndex == 0){
+      that.setData({hand: 'time'})
+    }
+    else if (data.name == ''){
+      that.setData({hand: 'name'})
+    }
+    else if (data.cell == ''){
+      that.setData({hand: 'cell'})
+    }
+    else{
+      that.setData({hand: ''})
+    }
   },
   selectDate(e){
     console.log('date selected', e)
@@ -134,6 +154,7 @@ Page({
     console.log('cell getted', e)
     var that = this
     that.setData({needAuth: false, cell: e.detail.userInfo.cell_number})
+    that.setHand()
   },
   changeShop: function(e){
     console.log('shop changed', e)
@@ -150,6 +171,7 @@ Page({
     }
     that.setData({shop: e.detail.shop, shopId: e.detail.shopId, shopAddress: shopAddress})
     that.fillTimeTable()
+    that.setHand()
   },
   fillTimeTable: function(){
     var that = this
@@ -180,6 +202,7 @@ Page({
     console.log('time select', e)
     var that = this
     that.setData({timeTableSelectIndex: e.detail.value})
+    that.setHand()
   },
   input: function(e){
     console.log('input', e)
@@ -195,6 +218,7 @@ Page({
       default:
         break
     }
+    that.setHand()
   },
 
   /**

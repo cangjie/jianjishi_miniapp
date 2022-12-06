@@ -3,7 +3,8 @@
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
       <view class="left-column" style="display: flex;flex-direction: row;">
-        <image src="../../images/hand.png" style="width: 25rpx;height: 25rpx;"></image>
+        <image wx:if="{{hand=='shop'}}" src="../../images/hand.png" style="width: 40rpx;height: 40rpx;"></image>
+        <view wx:else style="width: 40rpx;height: 40rpx;" ></view>
         <view>选择店铺：</view> 
       </view>
       <view class="right-column" >
@@ -14,13 +15,19 @@
   </mp-cell>
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
-      <view class="left-column" >店铺地址：</view>
+      <view class="left-column" style="display: flex;flex-direction: row;">
+        <view style="width: 40rpx;height: 40rpx;"></view>
+        <view>店铺地址：</view>
+      </view>
       <view class="right-column" >{{shopAddress}}</view>
     </view>
   </mp-cell>
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
-      <view class="left-column" >选择日期：</view>
+      <view class="left-column" style="display: flex;flex-direction: row;" >
+        <view style="width: 40rpx;height: 40rpx;"></view>
+        <view>选择日期：</view>
+      </view>
       <view class="right-column" >
         <picker mode="date" start="2022-11-1" end="2023-5-1" bindchange="selectDate"  >
           <view class="picker" >{{reserveDate}}</view>
@@ -30,7 +37,11 @@
   </mp-cell>
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
-      <view class="left-column" >选择时段：</view>
+      <view class="left-column" style="display: flex; flex-direction: row;"  >
+        <image wx:if="{{hand=='time'}}" src="../../images/hand.png" style="width: 40rpx;height: 40rpx;"></image>
+        <view wx:else style="width: 40rpx;height: 40rpx;"></view>
+        <view>选择时段：</view>
+      </view>
       <view class="right-column" style="display: flex;flex-direction: row;" >
         <picker  mode="selector" range="{{timeTableDescList}}" bindchange="selectTime" >
           {{timeTableDescList[timeTableSelectIndex]}}
@@ -41,16 +52,31 @@
   </mp-cell>
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
-      <view class="left-column" >姓名：</view>
+      <view class="left-column" style="display: flex; flex-direction: row;">
+        <image wx:if="{{hand=='name'}}" src="../../images/hand.png" style="width: 40rpx;height: 40rpx;"></image>
+        <view wx:else style="width: 40rpx;height: 40rpx;"></view>
+        <view>姓名：</view>
+      </view>
       <view class="right-column" ><input placeholder="{{ name == '' ? '请填写姓名' : ''}}" bindinput="input" id="name" value="{{name}}" /> </view>
     </view>
   </mp-cell>
   <mp-cell>
     <view style="display: flex; flex-direction: row;" >
-      <view class="left-column" >手机号：</view>
+      <view class="left-column" style="display: flex; flex-direction: row;" >
+        <image wx:if="{{hand=='cell'}}" src="../../images/hand.png" style="width: 40rpx;height: 40rpx;"></image>
+        <view wx:else style="width: 40rpx;height: 40rpx;"></view>
+        <view>手机号：</view>
+      </view>
       <view class="right-column" ><input bindinput="input" id="cell" value="{{cell}}" placeholder="{{cell==''? '请填写手机号' : ''}}" /> </view>
     </view>
   </mp-cell>
-  <mp-cell><button bindtap="submit" > 确 定 预 约 </button></mp-cell>
+  <mp-cell>
+    <view style="display: flex; flex-direction: row;">
+      <image wx:if="{{hand==''}}" src="../../images/hand.png" style="width: 40rpx;height: 40rpx;"></image>
+      <view wx:else style="width: 40rpx;height: 40rpx;"></view>
+      <button bindtap="submit" > 确 定 预 约 </button>
+    </view>
+    
+  </mp-cell>
 </mp-cells>
 <mp-tabbar   style="position:fixed;bottom:0;width:100%;left:0;right:0;" current="{{0}}" list="{{tabBarItem}}" bindchange="tabSwitch" ></mp-tabbar>
