@@ -2,7 +2,7 @@
   <button bindtap="gotoAdmin"> 我 是 管 理 员 </button>
 </view>
 <mp-cells>
-  <mp-cell wx:for="{{reserveList}}" >
+  <mp-cell wx:for="{{reserveList}}" id="{{item.id}}" bindtap="gotoDetail"  >
     <view style="display: flex;flex-direction: row;">
       <view class="left-column" >店铺：</view>
       <view class="right-column" >{{item.shop_name}}</view>

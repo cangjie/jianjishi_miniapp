@@ -1,0 +1,66 @@
+<mp-cells>
+  <mp-cell>
+    <view style="display: flex; flex-direction: row;" >
+      <view class="left-column" style="display: flex;flex-direction: row;" >
+        <image  src="../../images/hand.png" style="width: 40rpx;height: 40rpx;"></image>
+        <view>店铺：</view>
+      </view>
+      <view class="right-column" >
+        <shop_selector bindShopSelected="changeShop" shopId="{{reserve.shop_id}}" ></shop_selector>
+      </view>
+    </view>
+  </mp-cell>
+  <mp-cell>
+    <view style="display: flex; flex-direction: row;" >
+      <view class="left-column" style="display: flex;flex-direction: row;" >
+        <view style="width: 40rpx;"></view>
+        <view>日期：</view>
+      </view>
+      <view class="right-column" >{{reserve.reserve_date_str}}</view>
+    </view>
+  </mp-cell>
+  <mp-cell>
+    <view style="display: flex; flex-direction: row;" >
+      <view class="left-column" style="display: flex;flex-direction: row;" >
+        <image  src="../../images/hand.png" style="width: 40rpx;height: 40rpx;"></image>
+        <view>时段：</view>
+      </view>
+      <view class="right-column" >
+        <picker  mode="selector" range="{{timeTableDescList}}" bindchange="selectTime" >
+          {{timeTableDescList[timeTableSelectIndex]}}
+        </picker>
+        <view style="font-size: 11pt; color:red" wx:if="{{timeTableDescList.length == 1 && shopId != 0}}" > 此店铺当日已约满。</view>
+      </view>
+    </view>
+  </mp-cell>
+  <mp-cell>
+    <view style="display: flex; flex-direction: row;" >
+      <view class="left-column" style="display: flex;flex-direction: row;" >
+        <view style="width: 40rpx;"></view>
+        <view>姓名：</view>
+      </view>
+      <view class="right-column" >{{reserve.real_name}}</view>
+    </view>
+  </mp-cell>
+  <mp-cell>
+    <view style="display: flex; flex-direction: row;" >
+      <view class="left-column" style="display: flex;flex-direction: row;" >
+        <view style="width: 40rpx;"></view>
+        <view>电话：</view>
+      </view>
+      <view class="right-column" >{{reserve.cell_number}}</view>
+    </view>
+  </mp-cell>
+  <mp-cell>
+    <view style="display: flex; flex-direction: row;" >
+      <button> 修 改 预 约 </button>
+    </view>
+  </mp-cell>
+  <mp-cell>
+    <view style="display: flex; flex-direction: row;" >
+      <view class="left-column" >详细地址：</view>
+      <view class="right-column" ></view>
+    </view>
+  </mp-cell>
+</mp-cells>
+<mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" current="{{2}}" list="{{tabBarItem}}" bindchange="tabSwitch" ></mp-tabbar>

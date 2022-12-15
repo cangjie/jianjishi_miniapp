@@ -47,6 +47,12 @@ Page({
     })
   },
 
+  gotoDetail(e){
+    var id = e.currentTarget.id
+    wx.navigateTo({
+      url: 'reserve_detail?id=' + id,
+    })
+  },
   /**
    * Lifecycle function--Called when page is initially rendered
    */

@@ -6,7 +6,8 @@
     "pages/reserve/mine",
     "pages/reserve/admin",
     "pages/contact/contact",
-    "pages/reserve/contact"
+    "pages/reserve/contact",
+    "pages/reserve/reserve_detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
