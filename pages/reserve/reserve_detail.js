@@ -7,7 +7,8 @@ Page({
    * Page initial data
    */
   data: {
-
+    scene: 'view',
+    isPast: true
   },
 
   /**
@@ -25,7 +26,18 @@ Page({
           console.log('get reserve', res)
           var reserve = res.data
           reserve.reserve_date_str = util.formatDate(new Date(reserve.reserve_date))
-          that.setData({reserve: res.data})
+          var nowDateStr = util.formatDate(new Date()).split('T')[0].trim()
+          var isPast = (util.formatDate(new Date(reserve.reserve_date)) < util.formatDate(new Date(nowDateStr)))
+          
+          that.setData({reserve: res.data, isPast: isPast, shopId: reserve.shop_id})
+          var getShopUrl = app.globalData.requestPrefix + 'Shop/GetShop'
+          wx.request({
+            url: getShopUrl,
+            success:(res)=>{
+              that.setData({shopList: res.data})
+              that.getShopAddress()
+            }
+          })
         }
       })
     })
@@ -33,8 +45,34 @@ Page({
   changeShop(e){
     console.log('change shop', e)
     var that = this
-    that.setData({shopId: e.detail.shopId})
+    var scene = that.data.scene
+    if (scene=='mod'){
+      scene = 'shop'
+    }
+    else{
+      scene = 'time'
+    }
+    
+    
+    that.setData({shopId: e.detail.shopId, scene: scene})
     that.fillTimeTable()
+    that.getShopAddress()
+  },
+
+  getShopAddress(){
+    var that = this
+    var shopId = that.data.shopId
+    var shopList = that.data.shopList
+
+    var address = ''
+
+    for(var i = 0; i < shopList.length; i++){
+      if (shopList[i].id == shopId){
+        address = shopList[i].address
+        break
+      }
+    }
+    that.setData({address: address})
   },
 
   fillTimeTable: function(){
@@ -64,6 +102,47 @@ Page({
         }
       })
     }
+  },
+  mod(){
+    var that = this
+    that.setData({scene: 'mod'})
+  },
+  selectTime: function(e){
+    console.log('time select', e)
+    var that = this
+    var selectedIndex = e.detail.value
+    var timeId = that.data.timeTableIdList[selectedIndex]
+    that.setData({timeTableSelectIndex: selectedIndex, timeId: timeId, scene: 'submit'})
+    
+  },
+
+  submit(){
+    var that = this
+    console.log('shop id:' + that.data.shopId + ' time id:' + that.data.timeId )
+    var updateUrl = app.globalData.requestPrefix + 'Shop/ModReserve/' + that.data.reserve.id + '?shopId=' + that.data.shopId + '&timeTableId=' + that.data.timeId + '&sessionKey=' + encodeURIComponent(app.globalData.sessionKey)
+    wx.request({
+      url: updateUrl,
+      method: 'GET',
+      success:(res)=>{
+        if (res.statusCode == 200 && res.data.id > 0){
+          wx.showToast({
+            title: '修改成功',
+            icon: 'success',
+            success:()=>{
+              wx.redirectTo({
+                url: 'mine',
+              })
+            }
+          })
+        }
+      }
+    })
+  },
+
+  getShopInfo(){
+    var that = this
+    var shopId = that.data.shopId
+    var getShopInfoUrl = app.globalData.requestPrefix + 'Shop/'
   },
 
   tabSwitch: function(e) {
