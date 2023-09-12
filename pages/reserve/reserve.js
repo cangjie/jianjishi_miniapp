@@ -189,7 +189,11 @@ Page({
           for(var i = 0; i < res.data.length; i++){
             var timeSeg = res.data[i]
             if (timeSeg.avaliableCount >0){
-              timeTableDescList.push(timeSeg.description)
+              timeTableDescList.push(timeSeg.description+' (余' + timeSeg.avaliableCount.toString() + ')')
+              timeTableIdList.push(timeSeg.id)
+            }
+            else{
+              timeTableDescList.push(timeSeg.description+' (约满)')
               timeTableIdList.push(timeSeg.id)
             }
           }
