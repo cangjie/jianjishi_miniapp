@@ -7,7 +7,7 @@
 <view style="display: flex; flex-direction: row;">
   <view class="left-column" >开始日期：</view>
   <view class="right-column" >
-    <picker id="start" mode="date" start="2022-11-1" end="2023-5-1" bindchange="selectDate"  >
+    <picker id="start" mode="date" start="2023-9-10" end="2023-9-30" bindchange="selectDate"  >
       <view class="picker" >{{startDate}}</view>
     </picker>
   </view>
@@ -15,7 +15,7 @@
 <view style="display: flex; flex-direction: row;">
   <view class="left-column" >结束日期：</view>
   <view class="right-column" >
-    <picker id="end" mode="date" start="2022-11-1" end="2023-5-1" bindchange="selectDate"  >
+    <picker id="end" mode="date" start="2023-9-10" end="2023-9-30" bindchange="selectDate"  >
       <view class="picker" >{{endDate}}</view>
     </picker>
   </view>

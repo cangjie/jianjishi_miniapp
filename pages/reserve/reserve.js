@@ -62,10 +62,12 @@ Page({
     else if (name == ''){
       message = '请填写姓名'
     }
-    else if (cell == ''){
+    else if (cell == null || cell == undefined || cell == '' ){
       message = '请填写手机号'
     }
-
+    else if (cell.length != 11 || cell.substring(0, 1) != '1' ){
+      message = '请填写正确的手机号'
+    }
     if (message != ''){
       wx.showToast({
         title: message,
@@ -208,6 +210,14 @@ Page({
     that.setData({timeTableSelectIndex: e.detail.value})
     that.setHand()
   },
+
+  tapCell:function(){
+    var that = this
+    if (app.globalData.userInfo.cell_number == undefined || app.globalData.userInfo.cell_number == null || app.globalData.userInfo.cell_number == ';'){
+      that.setData({needAuth: true})
+    }
+  },
+
   input: function(e){
     console.log('input', e)
     var that = this
@@ -246,7 +256,7 @@ Page({
       that.setData({name: name})
       if (cell == ''){
         console.log('need auth')
-        that.setData({needAuth: true})
+        //that.setData({needAuth: true})
       }
       else{
         that.setData({cell: cell, needAuth: false})
