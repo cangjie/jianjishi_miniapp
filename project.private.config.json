@@ -8,6 +8,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pay test",
+          "pathName": "pages/test/pay",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "admin",
           "pathName": "pages/reserve/admin",
           "query": "date=2022-12-7",

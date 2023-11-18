@@ -1,0 +1,2 @@
+<!--pages/test/pay.wxml-->
+<button bindtap="payTest" disabled="{{!login}}">test</button>
