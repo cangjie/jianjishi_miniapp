@@ -7,7 +7,8 @@
     "pages/reserve/admin",
     "pages/contact/contact",
     "pages/reserve/contact",
-    "pages/reserve/reserve_detail"
+    "pages/reserve/reserve_detail",
+    "pages/reserve/reserve_chongli"
   ],
   "window": {
     "backgroundTextStyle": "light",

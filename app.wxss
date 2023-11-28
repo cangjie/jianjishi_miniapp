@@ -32,3 +32,7 @@
 .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label{
   color: blue;
 }
+.row_view{
+  display: flex;
+  flex-direction: row;
+}

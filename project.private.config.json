@@ -8,6 +8,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "chongli",
+          "pathName": "pages/reserve/reserve_chongli",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "admin",
           "pathName": "pages/reserve/admin",
           "query": "date=2022-12-7",

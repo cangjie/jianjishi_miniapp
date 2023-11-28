@@ -1,0 +1,24 @@
+<view class="row_view">
+  门店：
+  <picker range="{{shopNames}}" mode="selector" >
+    <picker-view  >{{shopNames[shopSelectIndex]}}</picker-view>
+  </picker>
+</view>
+<view class="row_view" >
+  日期：
+  <picker mode="date" >
+    <picker-view>{{selectedDate}}</picker-view>
+  </picker>
+</view>
+<view class="row_view">
+  项目：
+  <picker range="{{productNames}}" mode="selector" >
+    <picker-view  >{{productNames[productSelectIndex]}}</picker-view>
+  </picker>
+</view>
+<view>
+  <view wx:for="{{timeTable.timeList}}" style="display: flex; justify-content: center;" >
+    <view style="width: 80%; border-style: solid; border-color: gray;border-width: 1rpx;"  >{{item.description}}</view>
+    <view style="height: 10rpx;" ></view>
+  </view>
+</view>
