@@ -8,7 +8,10 @@
     "pages/contact/contact",
     "pages/reserve/contact",
     "pages/reserve/reserve_detail",
-    "pages/reserve/reserve_chongli"
+
+    "pages/reserve/reserve_chongli",
+
+    "pages/test/pay"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -8,8 +8,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "chongli",
-          "pathName": "pages/reserve/reserve_chongli",
+          "name": "pay test",
+          "pathName": "pages/test/pay",
           "query": "",
           "launchMode": "default",
           "scene": null
