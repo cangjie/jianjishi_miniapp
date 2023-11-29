@@ -8,10 +8,9 @@
     "pages/contact/contact",
     "pages/reserve/contact",
     "pages/reserve/reserve_detail",
-
     "pages/reserve/reserve_chongli",
-
-    "pages/test/pay"
+    "pages/test/pay",
+    "pages/reserve/reserve_confirm"
   ],
   "window": {
     "backgroundTextStyle": "light",

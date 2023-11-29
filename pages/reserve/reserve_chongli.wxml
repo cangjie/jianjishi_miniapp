@@ -1,24 +1,30 @@
 <view class="row_view">
   门店：
-  <picker range="{{shopNames}}" mode="selector" >
+  <picker range="{{shopNames}}" mode="selector" id="shopPicker" bindchange="pickerChange" >
     <picker-view  >{{shopNames[shopSelectIndex]}}</picker-view>
   </picker>
 </view>
 <view class="row_view" >
   日期：
-  <picker mode="date" >
+  <picker mode="date" id="datePicker" bindchange="pickerChange" >
     <picker-view>{{selectedDate}}</picker-view>
   </picker>
 </view>
 <view class="row_view">
   项目：
-  <picker range="{{productNames}}" mode="selector" >
+  <picker range="{{productNames}}" mode="selector" id="productPicker" bindchange="pickerChange" >
     <picker-view  >{{productNames[productSelectIndex]}}</picker-view>
   </picker>
 </view>
-<view>
-  <view wx:for="{{timeTable.timeList}}" style="display: flex; justify-content: center;" >
-    <view style="width: 80%; border-style: solid; border-color: gray;border-width: 1rpx;"  >{{item.description}}</view>
-    <view style="height: 10rpx;" ></view>
+<radio-group bindchange="reserve" >
+  <view wx:for="{{timeTable.timeList}}" style="display: grid; place-items: center;" >
+    <view style="width: 80%; border-style: solid; border-color: gray;border-width: 1rpx;"  >
+      <view style="text-align: center;">{{item.description}} 余：{{item.avaliableCount}}</view>
+      <view class="row_view" >
+        <radio wx:for="{{item.therapeutistTimeList}}" value="{{item.id}}"  disabled="{{products[productSelectIndex].need_therapeutist==0 || !item.avaliable }}"  >{{item.therapeutist.name}}</radio>
+        <radio value="{{item.id}}" disabled="{{products[productSelectIndex].need_therapeutist==1}}" >无需治疗师</radio>
+      </view>
+    </view>
+    <view style="height: 10rpx;border: none;" ></view>
   </view>
-</view>
+</radio-group>

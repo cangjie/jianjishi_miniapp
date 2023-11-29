@@ -82,6 +82,39 @@ Page({
     })
   },
 
+  pickerChange(e){
+    var that = this
+    var id = e.currentTarget.id
+    console.log('change ' + id, e)
+    var value = e.detail.value
+    switch(id){
+      case 'shopPicker':
+        that.setData({shopSelectIndex: parseInt(value)})
+        break
+      case 'productPicker':
+        that.setData({productSelectIndex: parseInt(value)})
+        break
+      case 'datePicker':
+        that.setData({selectedDate: value})
+        break
+      default:
+        break
+    }
+    that.getTimeTable()
+  },
+
+  reserve(e){
+    console.log('reserve', e)
+    var that = this
+    var shopId = that.data.shops[that.data.shopSelectIndex].id
+    var date = that.data.selectedDate
+    var productId = that.data.products[that.data.productSelectIndex].id
+    var selectedId = e.detail.value
+    var jumpUrl = 'reserve_confirm?shopId=' + shopId.toString() + '&productId=' + productId.toString() + '&selectedId=' + selectedId + '&date=' + date
+    wx.navigateTo({
+      url: jumpUrl
+    })
+  },
 
   /**
    * Lifecycle function--Called when page load

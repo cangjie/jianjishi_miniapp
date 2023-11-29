@@ -1,0 +1,7 @@
+<view class="row_view">门店：{{shop.name}}</view>
+<view class="row_view">项目：{{product.name}}</view>
+<view class="row_view">日期：{{date}}</view>
+<view class="row_view">时段：{{timeTableItem.description}}</view>
+<view class="row_view">治疗师：{{therapeutist.name}}</view>
+<view class="row_view">金额：{{product.sale_price}}</view>
+<view class="row_view" style="text-align: center;"><button bindtap="reserve" >确认预约并支付</button></view>
