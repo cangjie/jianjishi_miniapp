@@ -1,0 +1,11 @@
+/* pages/mine/reserve_list.wxss */
+.left-column{
+  width: 130rpx;
+  margin-left: 0rpx;
+  margin-right: 0rpx;
+}
+.right-column{
+  width: 200rpx;
+  margin-left: 0rpx;
+  margin-right: 0rpx;
+}

@@ -1,0 +1,28 @@
+<view>
+  <mp-cells title="我的预约 共{{reserveList.length}}次" >
+    <mp-cell wx:for="{{reserveList}}" >
+      <view class="row_view" >
+        <view class="left-column" >门店：</view>
+        <view class="right-column" style="width: 400rpx;" >{{item.shop_name}}</view>
+      </view>
+      <view class="row_view" >
+        <view class="left-column" >项目：</view>
+        <view class="right-column" style="width: 400rpx;" >{{item.product_name}}</view>
+      </view>
+      <view class="row_view">
+        <view class="left-column" >日期：</view>
+        <view class="right-column" >{{item.reserveDateStr}}</view>
+        <view class="left-column" >时段：</view>
+        <view class="right-column" >{{item.time_table_description}}</view>
+      </view>
+      <view class="row_view">
+        
+        <view class="left-column" >康复师：</view>
+        <view class="right-column" >{{item.therapeutist_name}}</view>
+        <view class="left-column" >状态：</view>
+        <view class="right-column" >{{item.status}}</view>
+      </view>
+      
+    </mp-cell>
+  </mp-cells>
+</view>

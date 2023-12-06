@@ -1,5 +1,6 @@
-// pages/admin/admin.js
+// pages/mine/reserve_list.js
 const app = getApp()
+const util = require('../../utils/util.js')
 Page({
 
   /**
@@ -9,10 +10,23 @@ Page({
 
   },
 
-  jump(e){
-    var id = e.currentTarget.id
-    wx.navigateTo({
-      url: id,
+  getData(){
+    var that = this
+    var getUrl = app.globalData.requestPrefix + 'Reserve/GetMyReserveList?sessionKey=' + encodeURIComponent(app.globalData.sessionKey)
+    wx.request({
+      url: getUrl,
+      method: 'GET',
+      success:(res)=>{
+        console.log('get reserve list', res)
+        if (res.statusCode != 200){
+          return
+        }
+        var reserveList = res.data
+        for (var i = 0; i < reserveList.length; i++){
+          reserveList[i].reserveDateStr = util.formatDate(new Date(reserveList[i].reserve_date))
+        }
+        that.setData({reserveList: reserveList})
+      }
     })
   },
 
@@ -36,8 +50,7 @@ Page({
   onShow() {
     var that = this
     app.loginPromise.then(function(resolve){
-      console.log('user info', app.globalData)
-      that.setData({userInfo: app.globalData.userInfo})
+      that.getData()
     })
   },
 

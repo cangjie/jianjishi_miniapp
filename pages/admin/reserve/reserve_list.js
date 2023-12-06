@@ -1,5 +1,4 @@
-// pages/admin/admin.js
-const app = getApp()
+// pages/admin/reserve/reserve_list.js
 Page({
 
   /**
@@ -7,13 +6,6 @@ Page({
    */
   data: {
 
-  },
-
-  jump(e){
-    var id = e.currentTarget.id
-    wx.navigateTo({
-      url: id,
-    })
   },
 
   /**
@@ -34,11 +26,7 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow() {
-    var that = this
-    app.loginPromise.then(function(resolve){
-      console.log('user info', app.globalData)
-      that.setData({userInfo: app.globalData.userInfo})
-    })
+
   },
 
   /**

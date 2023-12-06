@@ -4,6 +4,9 @@
     <mp-cell>
       <view>登陆网页后台</view>
     </mp-cell>
+    <mp-cell>
+      <view id="reserve/reserve_list" bindtap="jump" >预约列表</view>
+    </mp-cell>
   </mp-cells>
   <view wx:else >您不是管理员</view>
 </view>

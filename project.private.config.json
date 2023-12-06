@@ -8,6 +8,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "my reserve",
+          "pathName": "pages/mine/reserve_list",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "admin",
           "pathName": "pages/admin/admin",
           "query": "",

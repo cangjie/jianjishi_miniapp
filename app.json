@@ -11,7 +11,9 @@
     "pages/reserve/reserve_chongli",
     "pages/test/pay",
     "pages/reserve/reserve_confirm",
-    "pages/admin/admin"
+    "pages/admin/admin",
+    "pages/admin/reserve/reserve_list",
+    "pages/mine/reserve_list"
   ],
   "window": {
     "backgroundTextStyle": "light",
