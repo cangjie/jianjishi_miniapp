@@ -10,7 +10,8 @@
     "pages/reserve/reserve_detail",
     "pages/reserve/reserve_chongli",
     "pages/test/pay",
-    "pages/reserve/reserve_confirm"
+    "pages/reserve/reserve_confirm",
+    "pages/admin/admin"
   ],
   "window": {
     "backgroundTextStyle": "light",

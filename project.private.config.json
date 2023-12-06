@@ -8,6 +8,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "admin",
+          "pathName": "pages/admin/admin",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "reserve",
           "pathName": "pages/reserve/reserve_chongli",
           "query": "",
@@ -18,13 +25,6 @@
           "name": "pay test",
           "pathName": "pages/test/pay",
           "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "admin",
-          "pathName": "pages/reserve/admin",
-          "query": "date=2022-12-7",
           "launchMode": "default",
           "scene": null
         }
