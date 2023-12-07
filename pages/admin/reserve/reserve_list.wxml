@@ -1,2 +1,48 @@
-<!--pages/admin/reserve/reserve_list.wxml-->
-<text>pages/admin/reserve/reserve_list.wxml</text>
+<view>
+  <view class="row_view" >
+    <view class="left-column" style="width: 40%;" >选择日期：</view>
+    <view class="right-column" >
+      <picker mode="date" bindchange="changeDate" >
+        <picker-view>{{currentDate}}</picker-view>
+      </picker>
+    </view>
+  </view>
+  <view class="row_view" >
+    <view class="left-column" style="width: 40%;" >选择门店：</view>
+    <view class="right-column" >
+      <picker range="{{shopNames}}" mode="selector" id="shopPicker" bindchange="changeShop" >
+        <picker-view  >{{shopNames[shopSelectIndex]}}</picker-view>
+      </picker>
+    </view>
+  </view>
+  <mp-cells title="总共{{reserveList.length}}" >
+    <mp-cell wx:for="{{reserveList}}" >
+      <view class="row_view" >
+        <view class="left-column" >姓名：</view>
+        <view class="right-column">{{item.reserveUser.real_name}}</view>
+        <view class="left-column" >电话：</view>
+        <view class="right-column">{{item.reserveUser.cell_number}}</view>
+      </view>
+      <view class="row_view" >
+        <view class="left-column" >项目：</view>
+        <view class="right-column">{{item.product_name}}</view>
+      </view>
+      <view class="row_view" >
+        <view class="left-column" >康复师：</view>
+        <view class="right-column">{{item.therapeutist_name}}</view>
+        <view class="left-column" >时段：</view>
+        <view class="right-column">{{item.time_table_description}}</view>
+      </view>
+      <view class="row_view" >
+        <view class="left-column" >金额：</view>
+        <view class="right-column">{{item.orderAmountStr}}</view>
+        <view class="left-column" >状态：</view>
+        <view class="right-column">{{item.status}}</view>
+      </view>
+      <view class="row_view" ma >
+        <button id="{{item.id}}" bindtap="confirm" size="mini" > 核 销 </button>
+        <button id="{{item.id}}" bindtap="refund" size="mini" > 退 款 </button>
+      </view>
+    </mp-cell>
+  </mp-cells>
+</view>

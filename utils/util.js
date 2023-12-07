@@ -20,7 +20,16 @@ const formatDate = date => {
   return date.getFullYear().toString() + '-' + '00'.substr(0, 2-monthStr.length) + monthStr + '-' + '00'.substr(0, 2 - dayStr.length) + dayStr
 }
 
+const showAmount = n => {
+  var amount = parseFloat(n)
+  amount = Math.round(amount * 100)/100
+  var amountStrArr = amount.toString().split('.')
+  return '¥' + amountStrArr[0] + '.' + (amountStrArr.length == 2 ? (amountStrArr[1].length == 1 ? amountStrArr[1] + '0' : amountStrArr[1] ) : '00' )
+
+}
+
 module.exports = {
   formatTime,
-  formatDate
+  formatDate,
+  showAmount
 }
