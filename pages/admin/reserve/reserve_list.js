@@ -69,6 +69,30 @@ Page({
       }
     })
   },
+  confirm(e){
+    var that = this
+    var id = e.currentTarget.id
+    var getUrl = app.globalData.requestPrefix + 'Reserve/Use/' + id + '?sessionKey=' + encodeURIComponent(app.globalData.sessionKey)
+    wx.request({
+      url: getUrl,
+      method: 'GET',
+      success:(res)=>{
+        if (res.statusCode != 200){
+          return
+        }
+        wx.showToast({
+          title: '已核销',
+          icon: 'success'
+        })
+        that.getData()
+      }
+    })
+  },
+  refund(e){
+    wx.navigateTo({
+      url: 'reserve_refund?id=' + e.currentTarget.id,
+    })
+  },
   /**
    * Lifecycle function--Called when page load
    */

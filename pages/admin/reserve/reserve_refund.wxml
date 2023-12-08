@@ -1,0 +1,53 @@
+<view>
+  <view class="row_view" >
+    <view class="left-column" >门店：</view>
+    <view class="right-column" >{{reserve.shop_name}}</view>
+  </view>
+  <view class="row_view" >
+    <view class="left-column" >姓名：</view>
+    <view class="right-column" >{{reserve.reserveUser.real_name}}</view>
+  </view>
+  <view class="row_view" >
+    <view class="left-column" >电话：</view>
+    <view class="right-column" >{{reserve.reserveUser.cell_number}}</view>
+  </view>
+  <view class="row_view" >
+    <view class="left-column" >日期：</view>
+    <view class="right-column" >{{reserve.reserve_dateStr}}</view>
+  </view>
+  <view class="row_view" >
+    <view class="left-column" >时段：</view>
+    <view class="right-column" >{{reserve.time_table_description}}</view>
+  </view>
+  <view class="row_view" >
+    <view class="left-column" >项目：</view>
+    <view class="right-column" >{{reserve.product_name}}</view>
+  </view>
+  <view class="row_view" >
+    <view class="left-column" >康复师：</view>
+    <view class="right-column" >{{reserve.therapeutist_name}}</view>
+  </view>
+  <view class="row_view" >
+    <view class="left-column" >状态：</view>
+    <view class="right-column" >{{reserve.status}}</view>
+  </view>
+  <view class="row_view" >
+    <view class="left-column" >订单金额：</view>
+    <view class="right-column" >{{reserve.orderAmountStr}}</view>
+  </view>
+  <view class="row_view" >
+    <view class="left-column" >退款金额：</view>
+    <view class="right-column" >
+      <input placeholder="{{reserve.order.final_price}}" bindinput="setRefundAmount" />
+    </view>
+  </view>
+  <view class="row_view" >
+    <view class="left-column" >备注：</view>
+    <view class="right-column" >
+      <input type="text" style="width: 400rpx;" bindinput="setMemo" />
+    </view>
+  </view>
+  <view style="margin-top: 50rpx;" >
+    <button bindtap="tapRefund" > 确 认 退 款 </button>
+  </view>
+</view>

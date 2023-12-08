@@ -112,7 +112,13 @@ Page({
                 package: 'prepay_id=' + prepay_id,
                 paySign: sign,
                 timeStamp: timeStamp,
-                signType: 'RSA'
+                signType: 'RSA',
+                success:(res)=>{
+                  console.log('pay suc', res)
+                  wx.redirectTo({
+                    url: '../mine/reserve_list',
+                  })
+                }
               })
             }
           })
