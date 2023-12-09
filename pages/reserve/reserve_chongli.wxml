@@ -21,8 +21,8 @@
     <view style="width: 80%; border-style: solid; border-color: gray;border-width: 1rpx;"  >
       <view style="text-align: center;">{{item.description}} 余：{{item.avaliableCount}}</view>
       <view class="row_view" >
-        <radio wx:for="{{item.therapeutistTimeList}}" value="{{item.id}}"  disabled="{{products[productSelectIndex].need_therapeutist==0 || !item.avaliable }}"  >{{item.therapeutist.name}}</radio>
-        <radio value="{{item.id}}" disabled="{{products[productSelectIndex].need_therapeutist==1}}" >无需治疗师</radio>
+        <radio wx:for="{{item.therapeutistTimeList}}" value="{{item.id}}"  disabled="{{products[productSelectIndex].need_therapeutist==0 || !item.avaliable || item.pastDue}}"  >{{item.therapeutist.name}}</radio>
+        <radio value="{{item.id}}" disabled="{{products[productSelectIndex].need_therapeutist==1 || item.pastDue}}" >无需治疗师</radio>
       </view>
     </view>
     <view style="height: 10rpx;border: none;" ></view>

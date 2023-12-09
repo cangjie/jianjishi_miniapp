@@ -22,7 +22,9 @@
         <view class="left-column" >状态：</view>
         <view class="right-column" >{{item.status}}</view>
       </view>
-      
+      <view class="row_view"  style="margin-top: 20rpx;">
+        <button size="mini" disabled="{{item.status != '已预约'}}" id="{{item.id}}" bindtap="refund" > 申 请 退 款 </button>
+      </view>
     </mp-cell>
   </mp-cells>
 </view>

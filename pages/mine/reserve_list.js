@@ -24,8 +24,42 @@ Page({
         var reserveList = res.data
         for (var i = 0; i < reserveList.length; i++){
           reserveList[i].reserveDateStr = util.formatDate(new Date(reserveList[i].reserve_date))
+          if (reserveList[i].therapeutist_name == ''){
+            reserveList[i].therapeutist_name = '——'
+          }
         }
         that.setData({reserveList: reserveList})
+      }
+    })
+  },
+
+  refund(e){
+    var id = e.currentTarget.id
+    var that = this
+    var reserveList = that.data.reserveList
+    var reserve = {id:0}
+    for(var i = 0; i < reserveList.length; i++){
+      if (reserveList[i].id == parseInt(id)){
+        reserve = reserveList[i]
+        break
+      }
+    }
+    if (reserve.id == 0 || reserve.order == null){
+      return
+    }
+    var refundUrl = app.globalData.requestPrefix + 'Reserve/Refund/' + reserve.id + '?amount=' + reserve.order.final_price + '&memo=' + encodeURIComponent('用户主动取消') + '&sessionKey=' + encodeURIComponent(app.globalData.sessionKey)
+    wx.request({
+      url: refundUrl,
+      method: 'GET',
+      success:(res)=>{
+        if (res.statusCode != 200){
+          return
+        }
+        wx.showToast({
+          title: '已申请退款。',
+          icon:'success'
+        })
+        that.getData()
       }
     })
   },

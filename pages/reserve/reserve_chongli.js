@@ -77,7 +77,22 @@ Page({
         if (res.statusCode != 200){
           return
         }
-        that.setData({timeTable: res.data})
+        var timeTable = res.data
+        var now = new Date()
+        for(var i = 0; i < timeTable.timeList.length; i++){
+          timeTable.timeList[i].startTime = new Date(timeTable.timeList[i].startTime)
+          if (timeTable.timeList[i].startTime <= now){
+            timeTable.timeList[i].pastDue = true
+            
+          }
+          else{
+            timeTable.timeList[i].pastDue = false
+          }
+          for(var j = 0; j < timeTable.timeList[i].therapeutistTimeList.length; j++){
+            timeTable.timeList[i].therapeutistTimeList[j].pastDue = timeTable.timeList[i].pastDue
+          }
+        }
+        that.setData({timeTable: timeTable})
       }
     })
   },
