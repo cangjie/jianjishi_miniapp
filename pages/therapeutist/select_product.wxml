@@ -1,0 +1,30 @@
+<view>
+  <view class="row_view" >
+    <view style="margin-left: 20rpx;">
+        <image src="{{therapeutist.image_url}}" mode="widthFix" style="width: 300rpx;" ></image>
+      </view>
+      <view>
+        <view class="row_view">
+          <view class="left-column" >门店：</view>
+          <view class="right-column" >{{timeTableItem.shop_name}}</view>
+        </view>
+        <view class="row_view">
+          <view class="left-column" >康复师：</view>
+          <view class="right-column" >{{therapeutist.name}}</view>
+        </view>
+        <view class="row_view">
+          <view class="left-column" >时段：</view>
+          <view class="right-column" >{{timeTableItem.description}}</view>
+        </view>
+      </view>
+  </view>
+  <mp-cells title="选择项目" >
+    <mp-cell wx:for="{{products}}" >
+      <view class="row_view" id="{{item.id}}" bindtap="selectProduct" >
+        <view style="width: 40%;" >{{item.name}}</view>
+        <view style="width: 15%;" >{{item.duration}}分钟</view>
+        <view style="width: 35%;" >价格：{{item.sale_priceStr}}</view>
+      </view>
+    </mp-cell>
+  </mp-cells>
+</view>

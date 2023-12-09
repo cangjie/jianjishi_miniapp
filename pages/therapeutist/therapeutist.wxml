@@ -1,0 +1,26 @@
+<view>
+  <view class="row_view" >
+    <view style="margin-left: 20rpx;">
+        <image src="{{therapeutist.image_url}}" mode="widthFix" style="width: 300rpx;" ></image>
+      </view>
+      <rich-text type="nodes" style="font-size: 9pt;" nodes="{{therapeutist.desc}}" style="margin-left: 20rpx;margin-right: 12rpx;"></rich-text>
+  </view>
+  <view class="row_view">
+    <view class="left-column" >选择日期：</view>
+    <view class="right-column" >
+      <picker mode="date" start="{{nowDate}}" bindchange="changeDate" >
+        <picker-view>{{nowDate}}</picker-view>
+      </picker>
+    </view>
+  </view>
+  <mp-cells wx:for="{{shops}}" title="{{item.name}}余{{item.timeList.length}}" wx:if="{{item.avaliable}}" >
+    <mp-cell wx:for="{{item.timeList}}"   wx:if="{{item.avaliable}}" >
+      <view wx:if="{{item.avaliable}}"    class="row_view" >
+        <!--checkbox-group bindchange="gotoSelectProduct">
+          <checkbox value="{{item.id}}" ></checkbox>
+        </checkbox-group-->
+        <view bindtap="gotoSelectProduct" style="width: 600rpx;" id="{{item.id}}" >{{item.description}}</view>
+      </view>
+    </mp-cell>
+  </mp-cells>
+</view>

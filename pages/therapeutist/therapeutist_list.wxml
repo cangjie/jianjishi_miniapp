@@ -1,0 +1,11 @@
+<view>
+  <view wx:for="{{therapeutistList}}"  >
+    <view wx:if="{{index > 0}}" style="margin-top: 20rpx;margin-bottom: 20rpx;height: 1rpx;background-color: gray;" ></view>
+    <view class="row_view" id="{{item.id}}" bindtap="jump" >
+      <view style="margin-left: 20rpx;">
+        <image src="{{item.image_url}}" mode="widthFix" style="width: 300rpx;" ></image>
+      </view>
+      <rich-text type="nodes" style="font-size: 9pt;" nodes="{{item.desc}}" style="margin-left: 20rpx;margin-right: 12rpx;"></rich-text>
+    </view>
+  </view>
+</view>

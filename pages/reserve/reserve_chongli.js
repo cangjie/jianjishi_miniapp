@@ -68,7 +68,7 @@ Page({
     var shopId = that.data.shops[that.data.shopSelectIndex].id
     var productId = that.data.products[that.data.productSelectIndex].id
     var getUrl = app.globalData.requestPrefix + 'Reserve/GetShopDailyTimeList/' + shopId.toString() 
-      + '?date=' + encodeURIComponent(that.data.selectedDate) + '&sessionKey=aaa'
+      + '?date=' + encodeURIComponent(that.data.selectedDate) + '&sessionKey=' + encodeURIComponent(app.globalData.sessionKey)
     wx.request({
       url: getUrl,
       method: 'GET',

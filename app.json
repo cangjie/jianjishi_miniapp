@@ -14,7 +14,10 @@
     "pages/admin/admin",
     "pages/admin/reserve/reserve_list",
     "pages/mine/reserve_list",
-    "pages/admin/reserve/reserve_refund"
+    "pages/admin/reserve/reserve_refund",
+    "pages/therapeutist/therapeutist_list",
+    "pages/therapeutist/therapeutist",
+    "pages/therapeutist/select_product"
   ],
   "window": {
     "backgroundTextStyle": "light",

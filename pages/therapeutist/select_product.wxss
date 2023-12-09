@@ -1,0 +1,4 @@
+/* pages/therapeutist/select_product.wxss */
+.left-column{
+  width: 200rpx;
+}
