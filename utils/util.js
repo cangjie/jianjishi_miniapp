@@ -28,8 +28,23 @@ const showAmount = n => {
 
 }
 
+const isBlank = str =>{
+  if (str == undefined || str == null){
+    return true
+  }
+  else{
+    if (str.trim()==''){
+      return true
+    }
+    else {
+      return false
+    }
+  }
+}
+
 module.exports = {
   formatTime,
   formatDate,
-  showAmount
+  showAmount,
+  isBlank
 }

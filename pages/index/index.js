@@ -19,7 +19,7 @@ Page({
   },
   onLoad() {
     wx.redirectTo({
-      url: '../reserve/reserve',
+      url: '../reserve/reserve_chongli',
     })
     if (wx.getUserProfile) {
       this.setData({

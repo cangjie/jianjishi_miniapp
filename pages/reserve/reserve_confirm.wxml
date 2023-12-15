@@ -1,7 +1,61 @@
-<view class="row_view">门店：{{shop.name}}</view>
-<view class="row_view">项目：{{product.name}}</view>
-<view class="row_view">日期：{{date}}</view>
-<view class="row_view">时段：{{timeTableItem.description}}</view>
-<view class="row_view">治疗师：{{therapeutist.name}}</view>
-<view class="row_view">金额：{{product.sale_price}}</view>
-<view class="row_view" style="text-align: center;"><button bindtap="reserve" >确认预约并支付</button></view>
+<view>
+  <mp-cells title="您的个人信息" >
+    <mp-cell>
+      <view class="row_view" >
+        <view class="left-column">手机：</view>
+        <view class="right-column row_view"   >
+          <input style="width: 200rpx;" placeholder="{{userInfo.cell_numberPlaceHolder}}" id="cell" bindinput="modUserInfo" type="digit" /> <!--button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getCell">自动获取</button-->
+        </view>
+      </view>
+    </mp-cell>
+    <mp-cell>
+      <view class="row_view" >
+        <view class="left-column">姓名：</view>
+        <view class="right-column row_view"  >
+          <input style="width: 200rpx;" placeholder="{{userInfo.real_namePlaceHolder}}" bindinput="modUserInfo" id="name" />
+          <radio-group bindchange="modUserInfo" id="gender" >
+            <radio checked="{{userInfo.gender=='男'}}" value='男' >先生</radio>
+            <radio checked="{{userInfo.gender=='女'}}" value='女' >女士</radio>
+          </radio-group>
+        </view>
+      </view>
+    </mp-cell>
+  </mp-cells>
+  <mp-cells title="预约信息" >
+    <mp-cell>
+      <view class="row_view" >
+        <view class="left-column">门店：</view>
+        <view class="right-column" >{{shop.name}}</view>
+      </view>
+    </mp-cell>
+    <mp-cell>
+      <view class="row_view" >
+        <view class="left-column">项目：</view>
+        <view class="right-column" >{{product.name}}</view>
+      </view>
+    </mp-cell>
+    <mp-cell>
+      <view class="row_view" >
+        <view class="left-column">时间：</view>
+        <view class="right-column" >{{date}} {{timeTableItem.description}}</view>
+      </view>
+    </mp-cell>
+    <mp-cell>
+      <view class="row_view" >
+        <view class="left-column">康复师：</view>
+        <view class="right-column" >{{therapeutist.name}}</view>
+      </view>
+    </mp-cell>
+    <mp-cell>
+      <view class="row_view" >
+        <view class="left-column">价格：</view>
+        <view class="right-column" >{{product.sale_priceStr}}</view>
+      </view>
+    </mp-cell>
+  </mp-cells>
+  
+  <view class="row_view" style="text-align: center;margin-top: 50rpx;"><button bindtap="reserve" >确认预约并支付</button></view>
+  <view style="height: 200rpx;" ></view>
+</view>
+
+
