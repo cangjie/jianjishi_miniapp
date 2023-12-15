@@ -1,0 +1,10 @@
+<view>
+  <mp-cells title="项目列表" >
+    <mp-cell wx:for="{{productList}}" id="{{item.id}}" bindtap="gotoSelectShop" >
+      <view>{{item.name}}</view>
+      <view>{{item.sub_title}}</view>
+      <view>时长：{{item.duration}}分钟</view>
+      <view>{{item.desc}}</view>
+    </mp-cell>
+  </mp-cells>
+</view>

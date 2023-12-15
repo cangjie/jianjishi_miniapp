@@ -40,8 +40,8 @@
         <view class="right-column">{{item.status}}</view>
       </view>
       <view class="row_view" >
-        <button id="{{item.id}}" bindtap="confirm" size="mini" disabled="{{item.status == '已核销' || item.status == '已退款'}}" > 核 销 </button>
-        <button id="{{item.id}}" bindtap="refund" size="mini" disabled="{{item.status == '已核销' || item.status == '已退款'}}" > 退 款 </button>
+        <button id="{{item.id}}" bindtap="confirm" size="mini" disabled="{{item.status == '已核销' || item.status == '已退款' ||  item.status == '待支付' }}" > 核 销 </button>
+        <button id="{{item.id}}" bindtap="refund"  size="mini" disabled="{{item.status == '已核销' || item.status == '已退款' ||  item.status == '待支付' }}" > 退 款 </button>
       </view>
     </mp-cell>
   </mp-cells>

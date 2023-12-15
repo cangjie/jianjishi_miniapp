@@ -17,7 +17,9 @@
     "pages/admin/reserve/reserve_refund",
     "pages/therapeutist/therapeutist_list",
     "pages/therapeutist/therapeutist",
-    "pages/therapeutist/select_product"
+    "pages/therapeutist/select_product",
+    "pages/product/product_list",
+    "pages/product/select_shop"
   ],
   "window": {
     "backgroundTextStyle": "light",

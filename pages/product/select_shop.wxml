@@ -1,0 +1,50 @@
+<view>
+  <view class="row_view">
+    <view class="left-column" >项目：</view>
+    <view class="right-column" >{{product.name}} {{product.sub_title}}</view>
+  </view>
+  <view class="row_view">
+    <view class="left-column" >时长：</view>
+    <view class="right-column" >{{product.duration}}分钟</view>
+  </view>
+  <view class="row_view">
+    <view class="left-column" >门店：</view>
+    <view class="right-column" >
+      <shop-selector region="崇礼" wx:if="{{shopId != undefined}}" shopId="{{shopId}}" bindShopSelected="changeShop"  ></shop-selector>
+    </view>
+  </view>
+  <view class="row_view">
+    <view class="left-column" >日期：</view>
+    <view class="right-column" >
+      <picker mode="date" bindchange="changeDate" >
+        <picker-view>{{selectedDate}}</picker-view>
+      </picker>
+    </view>
+  </view>
+  <radio-group bindchange="selectTime">
+    <mp-cells title="选择时间和康复师" >
+      
+        <mp-cell wx:for="{{timeTable.timeList}}" wx:if="{{!item.pastDue}}"  >
+          <view class="row_view" wx:if="{{product.need_therapeutist==0}}" >
+            <view>时间：</view>
+            <view style="margin-right: 100rpx;">{{item.description}}</view>
+            <radio disabled="{{item.avaliableCount <= 0}}" value="{{item.id}}"></radio>
+          </view>
+          <view  wx:else >
+            <view class="row_view" >
+              <view>时间：</view>
+              <view style="margin-right: 100rpx;">{{item.description}}</view>
+            </view>
+            <view class="row_view" >
+              <view>康复师：</view>
+              <view class="row_view" >
+                <radio disabled="{{!tItem.avaliable || item.avaliableCount <= 0}}" wx:for="{{item.therapeutistTimeList}}" wx:for-item="tItem" value="{{tItem.id}}" >{{tItem.therapeutist.name}}</radio>
+              </view>
+            </view>
+            
+          </view>
+        </mp-cell>
+    
+    </mp-cells>
+  </radio-group>
+</view>

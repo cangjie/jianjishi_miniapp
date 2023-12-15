@@ -8,6 +8,10 @@ Component({
     shopId: {
       type: Number,
       value: 0
+    },
+    region:{
+      type: String,
+      value: ''
     }
   },
 
@@ -23,6 +27,9 @@ Component({
       
       app.loginPromise.then(function(resolve){
         var url = app.globalData.requestPrefix + 'Shop/GetShop'
+        if (that.properties.region != ''){
+          url = app.globalData.requestPrefix + 'Shop/GetShopByRegion?region=' + encodeURIComponent(that.properties.region)
+        }
         wx.request({
           url: url,
           method: 'GET',
@@ -46,6 +53,7 @@ Component({
               shop = that.data.shop_list[that.data.currentSelectedIndex - 1].name
               shopId = that.data.shop_list[that.data.currentSelectedIndex - 1].id
             }
+            
             that.triggerEvent('ShopSelected', {shop: shop, shopId: shopId, shopList: that.data.shop_list})
           }
         })
