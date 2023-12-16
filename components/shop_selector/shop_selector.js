@@ -53,8 +53,32 @@ Component({
               shop = that.data.shop_list[that.data.currentSelectedIndex - 1].name
               shopId = that.data.shop_list[that.data.currentSelectedIndex - 1].id
             }
+            wx.getFuzzyLocation({
+              type: 'wgs84',
+              success:(res)=>{
+                console.log('get location', res)
+                var lat = res.latitude
+                var lon = res.longitude
+                var shopList = that.data.shop_list
+                that.setData({currentSelectedIndex: 0})
+                for(var i = 0; i < shopList.length; i++){
+                  var curShop = shopList[i]
+                  if (curShop.lat_from <= lat && curShop.lat_to >= lat
+                    && curShop.long_from <= lon && curShop.long_to >= lon){
+                      that.setData({currentSelectedIndex: i+1})
+                      that.triggerEvent('ShopSelected', {shop: curShop, shopId: curShop.id, shopList: shopList})
+                      break
+                  }
+                }
+              },
+              fail:(res)=>{
+                console.log('get location fail', res)
+                var shopList = that.data.shop_list
+                that.setData({currentSelectedIndex: 0})
+                that.triggerEvent('ShopSelected', {shop: shopList[0], shopId: shopList[0].id, shopList: shopList})
+              }
+            })
             
-            that.triggerEvent('ShopSelected', {shop: shop, shopId: shopId, shopList: that.data.shop_list})
           }
         })
       })

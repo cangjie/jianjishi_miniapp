@@ -32,5 +32,17 @@
   "useExtendedLib": {
     "kbone": true,
     "weui": true
-  }
+  },
+  "permission": {
+    "scope.userFuzzyLocation": {
+      "desc": "用户在预约服务时，首先选择离自己最近的门店。"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getFuzzyLocation"
+  ],
+  "requiredBackgroundModes": [
+    "audio",
+    "location"
+  ]
 }
