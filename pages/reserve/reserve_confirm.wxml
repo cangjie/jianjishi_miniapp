@@ -1,10 +1,10 @@
 <view>
-  <mp-cells title="您的个人信息" >
+  <mp-cells title="您的个人信息" bindtap="hideDetail" >
     <mp-cell>
       <view class="row_view" >
         <view class="left-column">手机：</view>
         <view class="right-column row_view"   >
-          <input style="width: 200rpx;" placeholder="{{userInfo.cell_numberPlaceHolder}}" id="cell" bindinput="modUserInfo" type="digit" /> <!--button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getCell">自动获取</button-->
+          <input style="width: 200rpx;" placeholder="{{userInfo.cell_numberPlaceHolder}}" value="{{userInfo.cell_numberPlaceHolder}}" type="digit" id="cell" bindinput="modUserInfo"  /> <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">自动获取</button>
         </view>
       </view>
     </mp-cell>
@@ -43,7 +43,11 @@
     <mp-cell>
       <view class="row_view" >
         <view class="left-column">康复师：</view>
-        <view class="right-column" >{{therapeutist.name}}</view>
+        <view class="row_view right-column" >
+          <view>{{therapeutist.name}}</view>
+          <view style="width: 50rpx;" ></view>
+          <view bindtap="showDetail" >查看康复师详情</view>
+        </view>
       </view>
     </mp-cell>
     <mp-cell>
@@ -56,6 +60,18 @@
   
   <view class="row_view" style="text-align: center;margin-top: 50rpx;"><button bindtap="reserve" >确认预约并支付</button></view>
   <view style="height: 200rpx;" ></view>
+  <view  wx:if="{{showTherapeutist}}"  style="position: fixed;top:300rpx;left: 0rpx;opacity: 100;z-index: 1;background-color:white;" bindtap="hideDetail" >
+    <view style="height: 100rpx;" ></view>
+    <view class="row_view">
+      <view style="margin-left: 20rpx;">
+        <image src="{{therapeutist.image_url}}" mode="widthFix" style="width: 300rpx;" ></image>
+      </view>
+      <rich-text type="nodes" style="font-size: 9pt;" nodes="{{therapeutist.desc}}" style="margin-left: 20rpx;margin-right: 12rpx;"></rich-text>
+    </view>
+
+
+    <view style="height: 100rpx;" ></view>
+  </view>
 </view>
 
 

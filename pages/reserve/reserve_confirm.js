@@ -7,7 +7,18 @@ Page({
    * Page initial data
    */
   data: {
-    therapeutist:{ name: '——'}
+    therapeutist:{ name: '——'},
+    showTherapeutist: false
+  },
+
+  showDetail(){
+    var that = this
+    that.setData({showTherapeutist: true})
+  },
+
+  hideDetail(){
+    var that = this
+    that.setData({showTherapeutist: false})
   },
 
   checkUserInfo(){
@@ -210,6 +221,7 @@ Page({
         var newUserInfo = res.data
         var userInfo = that.data.userInfo
         userInfo.cell_number = newUserInfo.cell_number
+        userInfo.cell_numberPlaceHolder = newUserInfo.cell_number
         that.setData({userInfo: userInfo})
         //that.setData({show: false})
         //that.triggerEvent("UpdateSuccess", {userInfo: res.data})
