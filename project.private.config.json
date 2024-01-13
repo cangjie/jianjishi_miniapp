@@ -8,6 +8,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "card",
+          "pathName": "pages/product/product_card_list",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "index",
           "pathName": "pages/index/index",
           "query": "",

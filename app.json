@@ -19,7 +19,8 @@
     "pages/therapeutist/therapeutist",
     "pages/therapeutist/select_product",
     "pages/product/product_list",
-    "pages/product/select_shop"
+    "pages/product/select_shop",
+    "pages/product/product_card_list"
   ],
   "window": {
     "backgroundTextStyle": "light",
