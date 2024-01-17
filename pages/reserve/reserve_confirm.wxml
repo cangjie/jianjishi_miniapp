@@ -52,8 +52,27 @@
     </mp-cell>
     <mp-cell>
       <view class="row_view" >
+        <view class="left-column">支付方式：</view>
+        <view class="right-column">
+          <radio-group bindchange="setPayMethod" >
+            <radio checked="{{payMethod=='微信支付'}}" value='微信支付' >微信支付</radio>
+            <radio checked="{{payMethod=='储值卡支付'}}" value='储值卡支付' disabled="{{depositCards.length == 0}}" >储值卡支付</radio>
+            <radio checked="{{payMethod=='次卡支付'}}" value='次卡支付' disabled="{{timesCards.length == 0}}" >次卡支付</radio>
+            <radio checked="{{payMethod=='使用周卡'}}" value='使用周卡' disabled="{{weekCards.length == 0}}" >使用周卡</radio>
+          </radio-group>
+        </view>
+      </view>
+    </mp-cell>
+    <mp-cell wx:if="{{payMethod=='微信支付'}}" >
+      <view class="row_view" >
         <view class="left-column">价格：</view>
         <view class="right-column" >{{product.sale_priceStr}}</view>
+      </view>
+    </mp-cell>
+    <mp-cell wx:if="{{payMethod=='次卡支付'}}" >
+      <view class="row_view" >
+        <view class="left-column">{{timesCards[0].title}}：</view>
+        <view class="right-column" >已用：{{timesCards[0].used_times}}次 剩余：{{timesCards[0].total_times - timesCards[0].used_times}}</view>
       </view>
     </mp-cell>
   </mp-cells>

@@ -8,9 +8,58 @@ Page({
    */
   data: {
     therapeutist:{ name: '——'},
-    showTherapeutist: false
+    showTherapeutist: false,
+    payMethod: '微信支付',
+    depositCards:[],
+    weekCards:[],
+    timesCards:[]
   },
-
+  setPayMethod(e){
+    var that = this
+    that.setData({payMethod: e.detail.value})
+  },
+  getCards(){
+    var that = this
+    var product = that.data.product
+    var getUrl = app.globalData.requestPrefix + 'Card/GetAllCustomerCards?sessionKey=' + encodeURIComponent(app.globalData.sessionKey)
+    
+    wx.request({
+      url: getUrl,
+      method: 'GET',
+      success:(res)=>{
+        if (res.statusCode != 200){
+          return
+        }
+        var cardList = res.data
+        var depositCards = []
+        var weekCards = []
+        var timesCards = []
+        for(var i = 0; i < cardList.length; i++){
+          var card = cardList[i]
+          if (card.product != null){
+            switch(card.product.type){
+              case '次卡':
+                if (card.timeStatus == '使用期内'){
+                  if (card.total_times > card.used_times){
+                    for(var j = 0; j < card.associateProdct.length; j++){
+                      if (product.id == card.associateProdct[j].id){
+                        timesCards.push(card)
+                      }
+                    }
+                    
+                  }
+                }
+                break
+              default:
+                break
+            }
+          }
+        }
+        console.log('card list', cardList)
+        that.setData({cardList: cardList, timesCards: timesCards})
+      }
+    })
+  },
   showDetail(){
     var that = this
     that.setData({showTherapeutist: true})
@@ -78,6 +127,7 @@ Page({
         var product = res.data
         product.sale_priceStr = util.showAmount(product.sale_price)
         that.setData({product: product})
+        that.getCards()
         if (product.need_therapeutist == 1){
           getUrl = app.globalData.requestPrefix + 'Reserve/GetTherapeutistTime/' + that.data.selectedId
           wx.request({
@@ -242,6 +292,7 @@ Page({
   onShow() {
     var that = this
     app.loginPromise.then(function(resolve){
+      
       var userInfo = app.globalData.userInfo
       if (util.isBlank(userInfo.cell_number)){
         userInfo.cell_numberPlaceHolder = '请填写手机号。'
