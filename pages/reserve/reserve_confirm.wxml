@@ -71,8 +71,7 @@
     </mp-cell>
     <mp-cell wx:if="{{payMethod=='次卡支付'}}" >
       <view class="row_view" >
-        <view class="left-column">{{timesCards[0].title}}：</view>
-        <view class="right-column" >已用：{{timesCards[0].used_times}}次 剩余：{{timesCards[0].total_times - timesCards[0].used_times}}</view>
+        <view>{{timesCards[0].title}}：已用：{{timesCards[0].used_times==null? 0 : timesCards[0].used_times}}次 剩余：{{timesCards[0].total_times - timesCards[0].used_times}}次</view>
       </view>
     </mp-cell>
   </mp-cells>

@@ -1,5 +1,6 @@
 // pages/reserve/reserve_confirm.js
 const app = getApp()
+const { VertexBuffer } = require('XrFrame/kanata/lib/index')
 const util = require('../../utils/util.js')
 Page({
 
@@ -46,7 +47,6 @@ Page({
                         timesCards.push(card)
                       }
                     }
-                    
                   }
                 }
                 break
@@ -180,7 +180,31 @@ Page({
       therapeutistTimeId = that.data.therapeutistTimeItem.id
     }
     var timeTableId = that.data.timeTableItem.id
-    var reserveUrl = app.globalData.requestPrefix + 'Reserve/Reserve/' + that.data.product.id + '?timeId=' + timeTableId.toString() + '&therapeutistTimeId=' + therapeutistTimeId.toString() + '&date=' + encodeURIComponent(that.data.date) + '&sessionKey=' + encodeURIComponent(app.globalData.sessionKey)
+
+    var payMethod = that.data.payMethod
+
+    var cardId = 0
+
+    switch(payMethod){
+      case '次卡支付':
+        var timesCards = that.data.timesCards
+        cardId = timesCards[0].id
+        break
+      case '储值卡支付':
+        var depositCards = that.data.depositCards
+        cardId = depositCards[0].id
+        break
+      case '使用周卡':
+        var weekCards = that.data.weekCards
+        cardId = weekCards[0].id
+        break
+      default:
+        break
+    }
+
+
+    var reserveUrl = app.globalData.requestPrefix + 'Reserve/Reserve/' + that.data.product.id + '?timeId=' + timeTableId.toString() + '&therapeutistTimeId=' + therapeutistTimeId.toString() + '&date=' + encodeURIComponent(that.data.date) 
+    + '&cardId=' + cardId + '&sessionKey=' + encodeURIComponent(app.globalData.sessionKey)
     wx.request({
       url: reserveUrl,
       method: 'GET',
@@ -192,40 +216,67 @@ Page({
           })
         }
         else{
+
+          
+          var reserve = res.data
+          
+          that.setData({reserve: reserve})
+
+          var msg = ''
+          switch(payMethod){
+            case '次卡支付':
+              break
+            default:
+              msg = '预约成功，请尽快支付！'
+              that.payOrder()
+              break
+          }
+
           wx.showToast({
-            title: '预约成功，请尽快支付！',
+            title: msg,
             icon: 'success'
           })
-          var orderId = res.data.order.id
-          var payUrl = app.globalData.requestPrefix + 'Order/PayOrder/' + orderId + '?sessionKey=' + encodeURIComponent(app.globalData.sessionKey)
-          wx.request({
-            url: payUrl,
-            method: 'GET',
-            success:(res)=>{
-              console.log('ready to pay', res)
-              if (res.statusCode != 200){
-                return
-              }
-              var nonce = res.data.nonce
-              var prepay_id = res.data.prepay_id
-              var sign = res.data.sign
-              var timeStamp = res.data.timeStamp
-              wx.requestPayment({
-                nonceStr: nonce,
-                package: 'prepay_id=' + prepay_id,
-                paySign: sign,
-                timeStamp: timeStamp,
-                signType: 'RSA',
-                success:(res)=>{
-                  console.log('pay suc', res)
-                  wx.redirectTo({
-                    url: '../mine/reserve_list',
-                  })
-                }
-              })
-            }
-          })
+
+
+
+          
+
+
+          
         }
+      }
+    })
+  },
+
+  payOrder(){
+    var that = this
+    var orderId = that.data.reserve.order.id
+    var payUrl = app.globalData.requestPrefix + 'Order/PayOrder/' + orderId + '?sessionKey=' + encodeURIComponent(app.globalData.sessionKey)
+    wx.request({
+      url: payUrl,
+      method: 'GET',
+      success:(res)=>{
+        console.log('ready to pay', res)
+        if (res.statusCode != 200){
+          return
+        }
+        var nonce = res.data.nonce
+        var prepay_id = res.data.prepay_id
+        var sign = res.data.sign
+        var timeStamp = res.data.timeStamp
+        wx.requestPayment({
+          nonceStr: nonce,
+          package: 'prepay_id=' + prepay_id,
+          paySign: sign,
+          timeStamp: timeStamp,
+          signType: 'RSA',
+          success:(res)=>{
+            console.log('pay suc', res)
+            wx.redirectTo({
+              url: '../mine/reserve_list',
+            })
+          }
+        })
       }
     })
   },
