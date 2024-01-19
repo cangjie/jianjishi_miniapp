@@ -56,9 +56,9 @@
         <view class="right-column">
           <radio-group bindchange="setPayMethod" >
             <radio checked="{{payMethod=='微信支付'}}" value='微信支付' >微信支付</radio>
-            <radio checked="{{payMethod=='储值卡支付'}}" value='储值卡支付' disabled="{{depositCards.length == 0}}" >储值卡支付</radio>
-            <radio checked="{{payMethod=='次卡支付'}}" value='次卡支付' disabled="{{timesCards.length == 0}}" >次卡支付</radio>
-            <radio checked="{{payMethod=='使用周卡'}}" value='使用周卡' disabled="{{weekCards.length == 0}}" >使用周卡</radio>
+            <radio checked="{{payMethod=='储值卡'}}" value='储值卡' disabled="{{depositCards.length == 0}}" >储值卡支付</radio>
+            <radio checked="{{payMethod=='次卡'}}" value='次卡' disabled="{{timesCards.length == 0}}" >次卡支付</radio>
+            <radio checked="{{payMethod=='季卡'}}" value='季卡' disabled="{{weekCards.length == 0}}" >使用周卡</radio>
           </radio-group>
         </view>
       </view>

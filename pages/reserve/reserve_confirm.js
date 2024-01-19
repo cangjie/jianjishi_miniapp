@@ -186,15 +186,15 @@ Page({
     var cardId = 0
 
     switch(payMethod){
-      case '次卡支付':
+      case '次卡':
         var timesCards = that.data.timesCards
         cardId = timesCards[0].id
         break
-      case '储值卡支付':
+      case '储值卡':
         var depositCards = that.data.depositCards
         cardId = depositCards[0].id
         break
-      case '使用周卡':
+      case '季卡':
         var weekCards = that.data.weekCards
         cardId = weekCards[0].id
         break
