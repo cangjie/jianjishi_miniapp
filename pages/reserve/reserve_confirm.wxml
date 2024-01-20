@@ -58,7 +58,7 @@
             <radio checked="{{payMethod=='微信支付'}}" value='微信支付' >微信支付</radio>
             <radio checked="{{payMethod=='储值卡'}}" value='储值卡' disabled="{{depositCards.length == 0}}" >储值卡支付</radio>
             <radio checked="{{payMethod=='次卡'}}" value='次卡' disabled="{{timesCards.length == 0}}" >次卡支付</radio>
-            <radio checked="{{payMethod=='季卡'}}" value='季卡' disabled="{{weekCards.length == 0}}" >使用周卡</radio>
+            <radio checked="{{payMethod=='季卡'}}" value='季卡' disabled="{{seasonCards.length == 0}}" >使用周卡</radio>
           </radio-group>
         </view>
       </view>
@@ -69,9 +69,19 @@
         <view class="right-column" >{{product.sale_priceStr}}</view>
       </view>
     </mp-cell>
-    <mp-cell wx:if="{{payMethod=='次卡支付'}}" >
+    <mp-cell wx:if="{{payMethod=='次卡'}}" >
       <view class="row_view" >
         <view>{{timesCards[0].title}}：已用：{{timesCards[0].used_times==null? 0 : timesCards[0].used_times}}次 剩余：{{timesCards[0].total_times - timesCards[0].used_times}}次</view>
+      </view>
+    </mp-cell>
+    <mp-cell wx:if="{{payMethod=='季卡'}}" >
+      <view class="row_view" >
+        <view>{{seasonCards[0].title}}：{{seasonCards[0].start_dateStr}} - - {{seasonCards[0].end_dateStr}}</view>
+      </view>
+    </mp-cell>
+    <mp-cell wx:if="{{payMethod=='储值卡'}}" >
+      <view class="row_view" >
+        <view>{{seasonCards[0].title}}总额：{{depositCards[0].total_amountStr}} 剩余：{{depositCards[0].avaliableAmountStr}}</view>
       </view>
     </mp-cell>
   </mp-cells>

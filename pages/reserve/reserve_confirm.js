@@ -1,6 +1,5 @@
 // pages/reserve/reserve_confirm.js
 const app = getApp()
-const { VertexBuffer } = require('XrFrame/kanata/lib/index')
 const util = require('../../utils/util.js')
 Page({
 
@@ -12,7 +11,7 @@ Page({
     showTherapeutist: false,
     payMethod: '微信支付',
     depositCards:[],
-    weekCards:[],
+    seasonCards:[],
     timesCards:[]
   },
   setPayMethod(e){
@@ -33,7 +32,7 @@ Page({
         }
         var cardList = res.data
         var depositCards = []
-        var weekCards = []
+        var seasonCards = []
         var timesCards = []
         for(var i = 0; i < cardList.length; i++){
           var card = cardList[i]
@@ -50,13 +49,28 @@ Page({
                   }
                 }
                 break
+              case '季卡':
+                if (card.timeStatus == '使用期内'){
+                  card.start_dateStr = util.formatDate(new Date(card.start_date))
+                  card.end_dateStr = util.formatDate(new Date(card.end_date))
+                  seasonCards.push(card)
+                }
+                break
+              case '储值卡':
+                if (card.timeStatus == '使用期内'){
+                  card.total_amountStr = util.showAmount(card.total_amount)
+                  card.avaliableAmountStr = util.showAmount(card.total_amount - card.used_amount)
+                  depositCards.push(card)
+
+                }
+                break
               default:
                 break
             }
           }
         }
         console.log('card list', cardList)
-        that.setData({cardList: cardList, timesCards: timesCards})
+        that.setData({cardList: cardList, timesCards: timesCards, seasonCards: seasonCards, depositCards: depositCards})
       }
     })
   },
@@ -195,8 +209,8 @@ Page({
         cardId = depositCards[0].id
         break
       case '季卡':
-        var weekCards = that.data.weekCards
-        cardId = weekCards[0].id
+        var seasonCards = that.data.seasonCards
+        cardId = seasonCards[0].id
         break
       default:
         break
@@ -224,7 +238,13 @@ Page({
 
           var msg = ''
           switch(payMethod){
-            case '次卡支付':
+            case '次卡':
+            case '季卡':
+            case '储值卡':
+              msg = '预约成功'
+              wx.redirectTo({
+                url: '../mine/reserve_list',
+              })
               break
             default:
               msg = '预约成功，请尽快支付！'
@@ -236,13 +256,6 @@ Page({
             title: msg,
             icon: 'success'
           })
-
-
-
-          
-
-
-          
         }
       }
     })
