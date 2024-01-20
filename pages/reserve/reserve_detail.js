@@ -11,6 +11,8 @@ Page({
     isPast: true
   },
 
+  
+
   /**
    * Lifecycle function--Called when page load
    */
@@ -18,6 +20,7 @@ Page({
     var that = this
     that.setData({tabBarItem: app.globalData.userTabBarItem, id: options.id})
     app.loginPromise.then(function(resolve){
+      //that.getCards()
       var getReserveUrl = app.globalData.requestPrefix + 'Shop/GetReserve/' + that.data.id + '?sessionKey=' + encodeURIComponent(app.globalData.sessionKey)
       wx.request({
         url: getReserveUrl,
