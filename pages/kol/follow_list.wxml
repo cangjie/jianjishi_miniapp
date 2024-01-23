@@ -1,0 +1,9 @@
+<!--pages/kol/follow_list.wxml-->
+<mp-cells title="总共推荐关注{{total}}人" >
+  <mp-cell wx:for="{{followList}}">
+    <view class="row_view" >
+      <view class="left-column" style="text-align: center;width:60%" >{{item.key}}</view>
+      <view class="right-column" style="text-align: right;margin-right: 100rpx;" >{{item.value}}</view>
+    </view>
+  </mp-cell>
+</mp-cells>
